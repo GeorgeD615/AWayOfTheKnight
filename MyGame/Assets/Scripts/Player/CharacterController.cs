@@ -5,33 +5,30 @@ using UnityEngine.Events;
 
 public class CharacterController : MonoBehaviour
 {
-	[SerializeField] private float _jumpHight = 400f;
-	public float _slideSpeed = -3f;
-	[Range(0, 0.3f)] [SerializeField] private float _movementSmoothing = 0.05f;  
+	[SerializeField] private float _jumpHight = 700f;
+	[SerializeField] private float _slideSpeed = -2f; 
+	[Range(0, 0.3f)] [SerializeField] private float _movementSmoothing = 0.05f; 
 
 	[SerializeField] private LayerMask _groundLayerMask;
 	[SerializeField] private LayerMask _wallLayerMask;
 	[SerializeField] private Transform _groundCheckTransform;
 	[SerializeField] private Transform _wallCheckTransform;
 
-	const float _groundCheckRadius = 0.2f;
-	const float _wallCheckRadius = 0.2f;
+	private const float _groundCheckRadius = 0.2f;
+	private const float _wallCheckRadius = 0.2f;
 	private bool _isGrounded;
+	private bool _isSliding;
+	private bool _lookAtRight = true;
 
-	public Rigidbody2D _rigidbody;
+	private Rigidbody2D _rigidbody;
 	private Vector2 _velocity = Vector2.zero;
 
-	//[Header("Events")] // - подзаголовок в инспекторе 
-	//[Space] // - интервал в инспекторе 
+	[Header("Events")] 
+	[Space] 
 
 	public UnityEvent OnLandEvent;
 	public UnityEvent IsFallingEvent;
 	public UnityEvent WallSliding;
-
-	
-
-	public bool _lookAtRight = true;
-
 
 
 	private void Awake()
@@ -40,57 +37,53 @@ public class CharacterController : MonoBehaviour
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
+		if (IsFallingEvent == null)
+			IsFallingEvent = new UnityEvent();
+		if (WallSliding == null)
+			WallSliding = new UnityEvent();
 	}
 
 	private void FixedUpdate()
 	{
-		bool wasGrounded = _isGrounded;
 		_isGrounded = false;
+		_isSliding = false;
 
 		if (Physics2D.OverlapCircleAll(_groundCheckTransform.position, _groundCheckRadius, _groundLayerMask).Length != 0)
 		{
 			_isGrounded = true;
-			if (wasGrounded)
-				OnLandEvent.Invoke();
-		}
-
-		if(_rigidbody.velocity.y < 0)
-        {
-			if(Physics2D.OverlapCircleAll(_wallCheckTransform.position, _wallCheckRadius, _wallLayerMask).Length != 0)
-            {
+			OnLandEvent.Invoke();
+		} else if (_rigidbody.velocity.y < 0)
+		{
+			if (Physics2D.OverlapCircleAll(_wallCheckTransform.position, _wallCheckRadius, _wallLayerMask).Length != 0)
+			{
+				_isSliding = true;
 				WallSliding.Invoke();
-            }
-            else
-            {
+			}
+			else
+			{
 				IsFallingEvent.Invoke();
 			}
-        }
-		
+		}
+
 	}
 
-
+	private bool _blockMove;
+	private float jumpWallTime = 0.2f;
+	private float timerJumpWall = 0;
+	public Vector2 jumpAngle = new Vector2(3.5f, 10);
 	public void Move(float move, bool jump)
 	{
+        if (!_blockMove)
+        {
+			Vector2 targetVelocity = new Vector2(move * 10f, _rigidbody.velocity.y);
+			_rigidbody.velocity = Vector2.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _velocity, _movementSmoothing);
 
-		Vector2 targetVelocity = new Vector2(move * 10f, _rigidbody.velocity.y);
-		_rigidbody.velocity = Vector2.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _velocity, _movementSmoothing);
-		if (move > 0 && !_lookAtRight)
-		{
-			Flip();
-		}
-		else if (move < 0 && _lookAtRight)
-		{
-			Flip();
-		}
-		
-		if (_isGrounded && jump)
-		{
-			_isGrounded = false;
-			_rigidbody.AddForce(new Vector2(0f, _jumpHight));
-		}
+			ChangeDirection(move);
+			Jump(jump);
+			Slide(jump);
+        }
+		blockMoveForSlideJump();
 	}
-
-
 	private void Flip()
 	{
 		_lookAtRight = !_lookAtRight;
@@ -99,4 +92,52 @@ public class CharacterController : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+	private void ChangeDirection(float move)
+    {
+		if (move > 0 && !_lookAtRight)
+		{
+			Flip();
+		}
+		else if (move < 0 && _lookAtRight)
+		{
+			Flip();
+		}
+	}
+	private void Jump(bool jump)
+    {
+		if (_isGrounded && jump)
+		{
+			_isGrounded = false;
+			_rigidbody.AddForce(new Vector2(0f, _jumpHight));
+		}
+	}
+	private void Slide(bool jump)
+    {
+		if (_isSliding && !jump)
+		{
+			_rigidbody.velocity = new Vector2(0f, _slideSpeed);
+		}
+		else if (_isSliding && jump)
+		{
+			_blockMove = true;
+			IsFallingEvent.Invoke();
+			Flip();
+			if(_lookAtRight)
+				_rigidbody.velocity = new Vector2(transform.localScale.x + jumpAngle.x, jumpAngle.y);
+			else
+				_rigidbody.velocity = new Vector2(transform.localScale.x - jumpAngle.x, jumpAngle.y);
+		}
+	}
+	private void blockMoveForSlideJump()
+    {
+		if (_blockMove && ((timerJumpWall += Time.deltaTime) >= jumpWallTime))
+		{
+			if (_isGrounded || _isSliding || Input.GetAxis("Horizontal") != 0)
+			{
+				_blockMove = false;
+				timerJumpWall = 0;
+			}
+		}
+	}
+
 }

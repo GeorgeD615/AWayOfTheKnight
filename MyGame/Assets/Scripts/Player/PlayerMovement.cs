@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     public Animator _animator;
 
     public float _runSpeed = 30f;
-    public float _slideSpeed = -2f;
     float _horizontalMove = 0f;
     bool _isJumpButtonPressed = false;
 
@@ -43,17 +42,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void WallSlide()
     {
-        if((_controller._lookAtRight && (Input.GetAxisRaw("Horizontal") == 1)) || (!_controller._lookAtRight && (Input.GetAxisRaw("Horizontal") == -1)))
-        {
-            _controller._rigidbody.velocity = new Vector2(0, _slideSpeed);
-            _animator.SetBool("Sliding", true);
-            _animator.SetBool("Falling", false);
-            _animator.SetBool("Jumping", false);
-        }
-        else
-        {
-            IsFalling();
-        }
+        _animator.SetBool("Sliding", true);
+        _animator.SetBool("Falling", false);
+        _animator.SetBool("Jumping", false);
+
     }
 
 
