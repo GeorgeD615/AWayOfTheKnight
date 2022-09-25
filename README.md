@@ -14,6 +14,7 @@ ___
         +  Целевая платформа – Windows
     *  Игровые механики и фичи
         - [X] Передвижение (бег, прыжок, скольжение по стенам, прыжок от стены)
+        ![movement_gif](https://github.com/GeorgeD615/GameProject/blob/main/GameplayRecording/PlayerMovement.gif?raw=true)
         - [ ]  Атака в ближнем бою
         - [ ]  Блокирование
         - [ ]  Сбор сокровищ (монеты, драгоценные камни и т. п.)
