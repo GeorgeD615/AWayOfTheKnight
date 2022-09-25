@@ -45,13 +45,18 @@ public class CharacterController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		bool wasGrounded = _isGrounded;
 		_isGrounded = false;
 		_isSliding = false;
+
 
 		if (Physics2D.OverlapCircleAll(_groundCheckTransform.position, _groundCheckRadius, _groundLayerMask).Length != 0)
 		{
 			_isGrounded = true;
-			OnLandEvent.Invoke();
+            if (wasGrounded)
+            {
+				OnLandEvent.Invoke();
+			}
 		} else if (_rigidbody.velocity.y < 0)
 		{
 			if (Physics2D.OverlapCircleAll(_wallCheckTransform.position, _wallCheckRadius, _wallLayerMask).Length != 0)
