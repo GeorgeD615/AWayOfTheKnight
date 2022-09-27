@@ -16,15 +16,16 @@ public class CharacterController : MonoBehaviour
 
 	private const float _groundCheckRadius = 0.2f;
 	private const float _wallCheckRadius = 0.2f;
-	private bool _isGrounded;
-	private bool _isSliding;
 	private bool _lookAtRight = true;
+
+	public bool _isGrounded;
+	public bool _isSliding;
 
 	private Rigidbody2D _rigidbody;
 	private Vector2 _velocity = Vector2.zero;
 
-	[Header("Events")] 
-	[Space] 
+	[Header("Events")]
+	[Space]
 
 	public UnityEvent OnLandEvent;
 	public UnityEvent IsFallingEvent;
@@ -72,13 +73,16 @@ public class CharacterController : MonoBehaviour
 
 	}
 
-	private bool _blockMove;
+	private bool _blockMoveSlide;
 	private float jumpWallTime = 0.2f;
 	private float timerJumpWall = 0;
 	public Vector2 jumpAngle = new Vector2(3.5f, 10);
+	public bool _blockMoveAttack;
+	private float attackTime = 0.5f;
+	private float timerAttack = 0;
 	public void Move(float move, bool jump)
 	{
-        if (!_blockMove)
+        if (!_blockMoveSlide && !_blockMoveAttack)
         {
 			Vector2 targetVelocity = new Vector2(move * 10f, _rigidbody.velocity.y);
 			_rigidbody.velocity = Vector2.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _velocity, _movementSmoothing);
@@ -88,6 +92,7 @@ public class CharacterController : MonoBehaviour
 			Slide(jump);
         }
 		blockMoveForSlideJump();
+		blockMoveForAttack();
 	}
 	private void Flip()
 	{
@@ -124,7 +129,7 @@ public class CharacterController : MonoBehaviour
 		}
 		else if (_isSliding && jump)
 		{
-			_blockMove = true;
+			_blockMoveSlide = true;
 			IsFallingEvent.Invoke();
 			Flip();
 			if(_lookAtRight)
@@ -135,14 +140,25 @@ public class CharacterController : MonoBehaviour
 	}
 	private void blockMoveForSlideJump()
     {
-		if (_blockMove && ((timerJumpWall += Time.deltaTime) >= jumpWallTime))
+		if (_blockMoveSlide && ((timerJumpWall += Time.deltaTime) >= jumpWallTime))
 		{
 			if (_isGrounded || _isSliding || Input.GetAxis("Horizontal") != 0)
 			{
-				_blockMove = false;
+				_blockMoveSlide = false;
 				timerJumpWall = 0;
 			}
 		}
 	}
-
+	public void blockMoveForAttack()
+    {
+		if (_blockMoveAttack)
+        {
+			_rigidbody.velocity = new Vector2(0f, 0f);
+			if ((timerAttack += Time.deltaTime) >= attackTime)
+			{
+				_blockMoveAttack = false;
+				timerAttack = 0;
+			}
+		}
+	}
 }

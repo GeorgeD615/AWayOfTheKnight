@@ -18,8 +18,11 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
-        Vector3 targetPosition = new Vector3(_target.position.x, _target.position.y, -10);
-        Move(targetPosition);
+        if(_target != null)
+        {
+            Vector3 targetPosition = new Vector3(_target.position.x, _target.position.y, -10);
+            Move(targetPosition);
+        }
     }
 
     private void Move(Vector3 targetPosition)

@@ -17,13 +17,14 @@ public class PlayerMovement : MonoBehaviour
     {
         _horizontalMove = Input.GetAxisRaw("Horizontal") * _runSpeed;
         _animator.SetFloat("Speed", Math.Abs(_horizontalMove));
-
-        if (Input.GetButtonDown("Jump"))
+        if (!_controller._blockMoveAttack)
         {
-            _isJumpButtonPressed = true;
-            _animator.SetBool("Jumping", true);
+            if (Input.GetButtonDown("Jump"))
+            {
+                _isJumpButtonPressed = true;
+                _animator.SetBool("Jumping", true);
+            }
         }
-
     }
 
     public void OnLanding()
@@ -45,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("Sliding", true);
         _animator.SetBool("Falling", false);
         _animator.SetBool("Jumping", false);
-
     }
 
 
