@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public Animator _animator;
 
     public int _maxHelth = 100;
-    private int _currentHelth; 
+    private int _currentHelth;
     void Start()
     {
         _currentHelth = _maxHelth;
@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        
+     
     }
 
     public void TakeDamage(int damage)
@@ -24,7 +24,10 @@ public class Enemy : MonoBehaviour
 
         _animator.SetTrigger("Hurt");
 
-        if(_currentHelth <= 0)
+        Vector2 newPosition = new Vector2(transform.position.x + 0.1f, transform.position.y);
+        transform.position = newPosition;
+
+        if (_currentHelth <= 0)
         {
             Die();
         }

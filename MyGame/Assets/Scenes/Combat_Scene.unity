@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2763c3a51877e924eb25fc2a07ad6d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 0}
+  _target: {fileID: 1827361466}
   _movementSmoothing: 0.3
 --- !u!1 &1218390932
 GameObject:
@@ -575,3 +575,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 1218390936}
   _maxHelth: 100
+--- !u!4 &1827361466 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5513320266549758621, guid: 17b64522ba6db9648ad7c2713d43a506, type: 3}
+  m_PrefabInstance: {fileID: 12371266}
+  m_PrefabAsset: {fileID: 0}

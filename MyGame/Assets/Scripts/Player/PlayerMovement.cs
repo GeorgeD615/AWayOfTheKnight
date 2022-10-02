@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _horizontalMove = Input.GetAxisRaw("Horizontal") * _runSpeed;
         _animator.SetFloat("Speed", Math.Abs(_horizontalMove));
-        if (!_controller._blockMoveAttack)
+        if (!_controller._blockMoveAttack1 && !_controller._blockMoveAttack2 && !_controller._blockMoveAttack3)
         {
             if (Input.GetButtonDown("Jump"))
             {
@@ -26,29 +26,24 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
     public void OnLanding()
     {
         _animator.SetBool("Falling", false);
         _animator.SetBool("Jumping", false);
         _animator.SetBool("Sliding", false);
     }
-
     public void IsFalling()
     {
         _animator.SetBool("Falling", true);
         _animator.SetBool("Jumping", false);
         _animator.SetBool("Sliding", false);
     }
-
     public void WallSlide()
     {
         _animator.SetBool("Sliding", true);
         _animator.SetBool("Falling", false);
         _animator.SetBool("Jumping", false);
     }
-
-
     private void FixedUpdate()
     {
         _controller.Move(_horizontalMove * Time.fixedDeltaTime, _isJumpButtonPressed);
