@@ -18,8 +18,12 @@ public class EnemyController : MonoBehaviour
     private Vector2 _velocity = Vector2.zero;
 
     public enum State {IDLE, COMBAT};
-
     public State _currentState;
+
+
+    public bool _blockMoveHurt;
+    private float HurtTime = 0.5f;
+    private float timerHurt = 0;
 
     private void Awake()
     {
@@ -40,17 +44,9 @@ public class EnemyController : MonoBehaviour
             _animator.SetBool("CombatIdle", true);
         }
     }
-
-    public bool _blockMoveHurt;
-    private float HurtTime = 0.5f;
-    private float timerHurt = 0;
-    public bool _blockMoveAttack;
-    private float attackTime = 0.5f;
-    private float timerAttack = 0;
-
     public void MoveToPlayer(float move)
     {
-        if (Time.time > timerHurt)
+        if (Time.time > timerHurt && !_blockMoveAttack)
         {      
             Vector2 targetVelocity = new Vector2(move * 10f, _rigidbody.velocity.y);
             _rigidbody.velocity = Vector2.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _velocity, _movementSmoothing);
@@ -61,9 +57,8 @@ public class EnemyController : MonoBehaviour
         {
             _rigidbody.velocity = new Vector2(0f, 0f);
         }
-        //blockMoveForHurt();
+        blockMoveForAttack();
     }
-
     public void blockMoveForHurt(int hitCount)
     {
         if (hitCount == 1)
@@ -72,20 +67,6 @@ public class EnemyController : MonoBehaviour
             timerHurt += HurtTime;
 
     }
-
-    //void blockMoveForHurt()
-    //{
-    //    if (_blockMoveHurt)
-    //    {
-    //        _rigidbody.velocity = new Vector2(0f, 0f);
-    //        if ((timerHurt += Time.deltaTime) >= HurtTime)
-    //        {
-    //            _blockMoveHurt = false;
-    //            timerHurt = 0;
-    //        }
-    //    }
-    //}
-
     public void Flip()
     {
         _lookAtRight = !_lookAtRight;
@@ -94,7 +75,6 @@ public class EnemyController : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
-
     private void ChangeDirection(float move)
     {
         if (move > 0 && !_lookAtRight)
@@ -104,6 +84,23 @@ public class EnemyController : MonoBehaviour
         else if (move < 0 && _lookAtRight)
         {
             Flip();
+        }
+    }
+
+    public bool _blockMoveAttack;
+    private float attackTime = 0.7f;
+    private float timerAttack = 0;
+
+    public void blockMoveForAttack()
+    {
+        if (_blockMoveAttack)
+        {
+            _rigidbody.velocity = new Vector2(0f, 0f);
+            if ((timerAttack += Time.deltaTime) >= attackTime)
+            {
+                _blockMoveAttack = false;
+                timerAttack = 0;
+            }
         }
     }
 }

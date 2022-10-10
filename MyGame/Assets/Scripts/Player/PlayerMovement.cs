@@ -7,6 +7,7 @@ using System;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController _controller;
+    public PlayerCombat _playerCombat;
     public Animator _animator;
 
     public float _runSpeed = 30f;
@@ -26,6 +27,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    private void FixedUpdate()
+    {
+        if (!_playerCombat._isDead)
+        {
+            _controller.Move(_horizontalMove * Time.fixedDeltaTime, _isJumpButtonPressed);
+            _isJumpButtonPressed = false;
+        }
+    }
     public void OnLanding()
     {
         _animator.SetBool("Falling", false);
@@ -43,10 +52,5 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("Sliding", true);
         _animator.SetBool("Falling", false);
         _animator.SetBool("Jumping", false);
-    }
-    private void FixedUpdate()
-    {
-        _controller.Move(_horizontalMove * Time.fixedDeltaTime, _isJumpButtonPressed);
-        _isJumpButtonPressed = false;
     }
 }

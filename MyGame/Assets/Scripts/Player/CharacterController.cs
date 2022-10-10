@@ -31,6 +31,16 @@ public class CharacterController : MonoBehaviour
 	public UnityEvent IsFallingEvent;
 	public UnityEvent WallSliding;
 
+	private bool _blockMoveSlide;
+	private float jumpWallTime = 0.2f;
+	private float timerJumpWall = 0;
+	public Vector2 jumpAngle = new Vector2(3.5f, 10);
+
+	public bool _blockMoveAttack1;
+	public bool _blockMoveAttack2;
+	public bool _blockMoveAttack3;
+	private float attackTime = 0.5f;
+	private float timerAttack = 0;
 
 	private void Awake()
 	{
@@ -43,7 +53,6 @@ public class CharacterController : MonoBehaviour
 		if (WallSliding == null)
 			WallSliding = new UnityEvent();
 	}
-
 	private void FixedUpdate()
 	{
 		bool wasGrounded = _isGrounded;
@@ -72,20 +81,9 @@ public class CharacterController : MonoBehaviour
 		}
 
 	}
-
-	private bool _blockMoveSlide;
-	private float jumpWallTime = 0.2f;
-	private float timerJumpWall = 0;
-	public Vector2 jumpAngle = new Vector2(3.5f, 10);
-	public bool _blockMoveAttack1;
-	public bool _blockMoveAttack2;
-	public bool _blockMoveAttack3;
-	private float attackTime = 0.5f;
-	private float timerAttack = 0;
-
 	public void Move(float move, bool jump)
 	{
-        if (!_blockMoveSlide && !_blockMoveAttack1 && !_blockMoveAttack2)
+        if (!_blockMoveSlide && !_blockMoveAttack1 && !_blockMoveAttack2 ! && !_blockMoveAttack3)
         {
 			Vector2 targetVelocity = new Vector2(move * 10f, _rigidbody.velocity.y);
 			_rigidbody.velocity = Vector2.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _velocity, _movementSmoothing);
