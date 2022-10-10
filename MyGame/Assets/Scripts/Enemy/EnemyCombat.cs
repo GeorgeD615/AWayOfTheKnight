@@ -31,7 +31,7 @@ public class EnemyCombat : MonoBehaviour
     }
     void Update()
     {
-        if(Time.time >= _nextAttackTime && !_playerCombat._isDead )
+        if(Time.time >= _nextAttackTime /*&& !_playerCombat._isDead */)
         {
             if (Physics2D.OverlapCircleAll(_attackPoint.position, _attackRadius, _player).Length != 0)
             {
@@ -62,22 +62,21 @@ public class EnemyCombat : MonoBehaviour
         _isDead = true;
         _animator.SetBool("isDead", true);
         GetComponent<Collider2D>().enabled = false;
+        GetComponent<EnemyMovement>().enabled = false;
+        GetComponent<EnemyController>().enabled = false;
         this.enabled = false;
     }
     private void Attack()
     {
-        _nextAttackTime = Time.time + 1f / _attackRate;
+        _nextAttackTime = Time.time + 2f;
         _animator.SetTrigger("Attack");
         _controller._blockMoveAttack = true;
         MakeDamage();
     }
     void MakeDamage()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRadius, _player);
-        foreach (Collider2D player in hitEnemies)
-        {
-            player.GetComponent<PlayerCombat>().TakeDamage(_damage);
-        }
+        Collider2D hitPlayer = Physics2D.OverlapCircle(_attackPoint.position, _attackRadius, _player);
+        hitPlayer.GetComponent<PlayerCombat>().TakeDamage(_damage);
     }
     private void OnDrawGizmosSelected()
     {

@@ -73,8 +73,8 @@ GameObject:
   - component: {fileID: 4558850100660478398}
   - component: {fileID: 4558850100660478397}
   - component: {fileID: 4558850100660478396}
-  - component: {fileID: 4558850100660478339}
   - component: {fileID: 4558850100660478393}
+  - component: {fileID: 4558850100660478339}
   - component: {fileID: 4558850100660478392}
   - component: {fileID: 4558850100660478399}
   - component: {fileID: 920715281968334353}
@@ -178,22 +178,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &4558850100660478339
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4558850100660478338}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.45}
-  serializedVersion: 2
-  m_Radius: 0.4
 --- !u!61 &4558850100660478393
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -220,6 +204,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5350803, y: 0.9849266}
   m_EdgeRadius: 0
+--- !u!58 &4558850100660478339
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4558850100660478338}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.3}
+  serializedVersion: 2
+  m_Radius: 0.25
 --- !u!114 &4558850100660478392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +291,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   jumpAngle: {x: 5, y: 10}
-  _blockMoveAttack: 0
+  _blockMoveAttack1: 0
+  _blockMoveAttack2: 0
+  _blockMoveAttack3: 0
 --- !u!114 &4558850100660478399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 4558850100660478392}
+  _playerCombat: {fileID: 0}
   _animator: {fileID: 920715281968334353}
   _runSpeed: 30
 --- !u!95 &920715281968334353
@@ -348,6 +351,7 @@ MonoBehaviour:
     m_Bits: 256
   _damage: 20
   _attackRate: 2
+  _maxHelth: 100
 --- !u!1 &4558850101242518193
 GameObject:
   m_ObjectHideFlags: 0

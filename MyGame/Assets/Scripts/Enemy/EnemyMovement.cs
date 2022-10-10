@@ -26,7 +26,8 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         HurtBias();
-        CombatBehavior();
+        if(_controller._currentState == EnemyController.State.COMBAT)
+            CombatBehavior();
     }
     private void FixedUpdate()
     {
@@ -63,23 +64,17 @@ public class EnemyMovement : MonoBehaviour
     }
     private void CombatBehavior()
     {
-        if (_controller._currentState == EnemyController.State.COMBAT)
+        if (Math.Abs(_playerTransform.position.x - transform.position.x) <= 1)
         {
-            if (Math.Abs(_playerTransform.position.x - transform.position.x) <= 1)
-            {
-                _horizontalMove = 0f;
-            }
-            else
-            {
-                if (_playerTransform.position.x < transform.position.x)
-                    _horizontalMove = (-1) * _runSpeed;
-                else
-                    _horizontalMove = _runSpeed;
-            }
-            _animator.SetFloat("Speed", Math.Abs(_horizontalMove));
+            _horizontalMove = 0f;
         }
+        else
+        {
+            if (_playerTransform.position.x < transform.position.x)
+                _horizontalMove = (-1) * _runSpeed;
+            else
+                _horizontalMove = _runSpeed;
+        }
+        _animator.SetFloat("Speed", Math.Abs(_horizontalMove));     
     }
-
-
-    
 }

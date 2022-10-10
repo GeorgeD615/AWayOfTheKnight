@@ -23,14 +23,11 @@ public class PlayerCombat : MonoBehaviour
     public int _maxHelth = 100;
     private int _currentHelth;
 
-    public bool _isDead = false;
-
     void Start()
     {
         _currentHelth = _maxHelth;
         _rigidbody = GetComponent<Rigidbody2D>();
     }
-
     void Update()
     {
         if(_controller._isGrounded && !_controller._isSliding)
@@ -105,12 +102,12 @@ public class PlayerCombat : MonoBehaviour
     }
     private void Die()
     {
-        _isDead = true;
         _animator.SetBool("isDead", true);
-        GetComponent<Collider2D>().enabled = false;
+        _rigidbody.gravityScale = 0;
+        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
         GetComponent<CharacterController>().enabled = false;
         GetComponent<PlayerMovement>().enabled = false;
-        _rigidbody.velocity = new Vector2 (0f, 0f);
         this.enabled = false;
     }
     private void OnDrawGizmosSelected()

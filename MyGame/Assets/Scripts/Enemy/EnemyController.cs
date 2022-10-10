@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private Vector2 _velocity = Vector2.zero;
 
-    public enum State {IDLE, COMBAT};
+    public enum State {IDLE, IDLECOMBAT, COMBAT};
     public State _currentState;
 
 
@@ -35,14 +35,25 @@ public class EnemyController : MonoBehaviour
     }
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 1f), -transform.right, 5f, _playerLayer);
-        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + 1f), -transform.right * 5f, Color.red);
-
-        if (hit.collider != null)
+        switch (_currentState)
         {
-            _currentState = State.COMBAT;
-            _animator.SetBool("CombatIdle", true);
+            case State.IDLE:
+                RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 1f), -transform.right, 5f, _playerLayer);
+                Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + 1f), -transform.right * 5f, Color.red);
+
+                if (hit.collider != null)
+                {
+                    _currentState = State.COMBAT;
+                    _animator.SetBool("CombatIdle", true);
+                }
+                break;
+            case State.IDLECOMBAT:
+                break;
+            case State.COMBAT:
+
+                break;
         }
+
     }
     public void MoveToPlayer(float move)
     {

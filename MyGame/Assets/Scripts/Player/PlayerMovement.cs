@@ -29,11 +29,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (!_playerCombat._isDead)
-        {
-            _controller.Move(_horizontalMove * Time.fixedDeltaTime, _isJumpButtonPressed);
-            _isJumpButtonPressed = false;
-        }
+        _controller.Move(_horizontalMove * Time.fixedDeltaTime, _isJumpButtonPressed);
+        _isJumpButtonPressed = false;
     }
     public void OnLanding()
     {
