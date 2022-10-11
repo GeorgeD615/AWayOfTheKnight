@@ -20,11 +20,6 @@ public class EnemyController : MonoBehaviour
     public enum State {IDLE, IDLECOMBAT, COMBAT};
     public State _currentState;
 
-
-    public bool _blockMoveHurt;
-    private float HurtTime = 0.5f;
-    private float timerHurt = 0;
-
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -41,17 +36,19 @@ public class EnemyController : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 1f), -transform.right, 5f, _playerLayer);
                 Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + 1f), -transform.right * 5f, Color.red);
 
-                if (hit.collider != null)
+                if ((hit.collider != null) || (Math.Abs(_playerTransform.position.x - transform.position.x) <= 0.7))
                 {
                     _currentState = State.COMBAT;
                     _animator.SetBool("CombatIdle", true);
                 }
                 break;
+            case State.COMBAT:
+                if ((_playerTransform.position.x <= transform.position.x && _lookAtRight) || (_playerTransform.position.x > transform.position.x && !_lookAtRight))
+                    Flip();
+                break;
             case State.IDLECOMBAT:
                 break;
-            case State.COMBAT:
-
-                break;
+            
         }
 
     }
@@ -61,7 +58,6 @@ public class EnemyController : MonoBehaviour
         {      
             Vector2 targetVelocity = new Vector2(move * 10f, _rigidbody.velocity.y);
             _rigidbody.velocity = Vector2.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _velocity, _movementSmoothing);
-
             ChangeDirection(move);
         }
         else
@@ -70,13 +66,16 @@ public class EnemyController : MonoBehaviour
         }
         blockMoveForAttack();
     }
+
+    public bool _blockMoveHurt;
+    private float HurtTime = 0.6f;
+    private float timerHurt = 0;
     public void blockMoveForHurt(int hitCount)
     {
         if (hitCount == 1)
             timerHurt = Time.time + HurtTime;
         else
             timerHurt += HurtTime;
-
     }
     public void Flip()
     {

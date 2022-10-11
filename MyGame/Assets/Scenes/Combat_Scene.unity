@@ -184,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 1371538215}
     - target: {fileID: 6520233979128561341, guid: 17b64522ba6db9648ad7c2713d43a506, type: 3}
       propertyPath: _maxHelth
-      value: 1000
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17b64522ba6db9648ad7c2713d43a506, type: 3}
@@ -487,6 +487,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3341382419985887615, guid: fd6449cd6a8ff634bbffbf6d4fa08262, type: 3}
+      propertyPath: _runSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3341382419985887615, guid: fd6449cd6a8ff634bbffbf6d4fa08262, type: 3}
       propertyPath: _enemyCombat
       value: 
       objectReference: {fileID: 740645806}
@@ -500,7 +504,7 @@ PrefabInstance:
       objectReference: {fileID: 740645801}
     - target: {fileID: 4204920423443323233, guid: fd6449cd6a8ff634bbffbf6d4fa08262, type: 3}
       propertyPath: _maxHelth
-      value: 1000
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4204920423443323233, guid: fd6449cd6a8ff634bbffbf6d4fa08262, type: 3}
       propertyPath: _attackRate

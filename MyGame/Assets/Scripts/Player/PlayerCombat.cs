@@ -12,7 +12,6 @@ public class PlayerCombat : MonoBehaviour
     public float _attackRadius = 0.5f;
 
     public LayerMask _enemies;
-    public int _damage = 20;
     public float _attackRate = 2f; // 2 атаки в секунду
     private float _nextAttackTime = 0f;
 
@@ -21,20 +20,47 @@ public class PlayerCombat : MonoBehaviour
     int _clickCount = 0;
 
     public int _maxHelth = 100;
-    private int _currentHelth;
+    public int _currentHelth;
+    public float _maxStamina = 100;
+    public float _currentStamina;
 
     void Start()
     {
         _currentHelth = _maxHelth;
+        _currentStamina = _maxStamina;
         _rigidbody = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
-        if(_controller._isGrounded && !_controller._isSliding)
+        if(_controller._isGrounded && !_controller._isSliding && !_blockAttackForHurt && _currentStamina > 30)
         {
             if (Input.GetMouseButtonDown(0))
             {
+                _currentStamina -= 30;
                 AttackCombo();
+            }
+        }
+        blockAttackForHurt();
+    }
+
+    private void FixedUpdate()
+    {
+        if (_currentStamina < _maxStamina)
+            _currentStamina += 0.2f;
+    }
+
+
+    public bool _blockAttackForHurt = false;
+    private float hurtTime = 0.2f;
+    private float timerHurt = 0;
+    private void blockAttackForHurt()
+    {
+        if (_blockAttackForHurt)
+        {
+            if ((timerHurt += Time.deltaTime) >= hurtTime)
+            {
+                _blockAttackForHurt = false;
+                hurtTime = 0;
             }
         }
     }
@@ -47,11 +73,11 @@ public class PlayerCombat : MonoBehaviour
             _nextAttackTime = Time.time + 1f / _attackRate;
             _clickCount = 1;
         }
-        if ((timeSinceLastClick <= _doubleClickTime) && _clickCount == 1)
+        if ((timeSinceLastClick <= _doubleClickTime) && _clickCount == 1 )
         {
             Attack2();
         }
-        if (_clickCount == 2)
+        if (_clickCount == 2 )
         {
             Attack3();
             _clickCount = 1;
@@ -68,32 +94,32 @@ public class PlayerCombat : MonoBehaviour
         _animator.SetTrigger("Attack1");
         _animator.SetBool("Attack2", false);
         _animator.SetBool("Attack3", false);
-        MakeDamage();
-
+        MakeDamage(20);
     }
     void Attack2()
     {
         _controller._blockMoveAttack2 = true;
         _animator.SetBool("Attack2",true);
-        MakeDamage();
+        MakeDamage(20);
     }
     void Attack3()
     {
         _controller._blockMoveAttack3 = true;
         _animator.SetBool("Attack3", true);
-        MakeDamage();
+        MakeDamage(40);
     }
-    void MakeDamage()
+    void MakeDamage(int damage)
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRadius, _enemies);
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyCombat>().TakeDamage(_damage);
+            enemy.GetComponent<EnemyCombat>().TakeDamage(damage);
         }
     }
     public void TakeDamage(int damage)
     {
         _animator.SetTrigger("Hurt");
+        _controller._blockMoveForHurt = true;
         _currentHelth -= damage;
         if (_currentHelth <= 0)
         {

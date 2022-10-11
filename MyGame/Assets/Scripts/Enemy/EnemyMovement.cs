@@ -15,7 +15,7 @@ public class EnemyMovement : MonoBehaviour
 
 
     public float _biasHurtSpeed = 6f;
-    public float _biasHurt = 0.2f;
+    public float _biasHurt = 0.1f;
     public Vector3 _prevPosition;
 
 
@@ -26,8 +26,17 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         HurtBias();
-        if(_controller._currentState == EnemyController.State.COMBAT)
-            CombatBehavior();
+        switch (_controller._currentState)
+        {
+            case EnemyController.State.IDLE:
+                break;
+            case EnemyController.State.COMBAT:
+                CombatBehavior();
+                break;
+            case EnemyController.State.IDLECOMBAT:
+
+                break;
+        }
     }
     private void FixedUpdate()
     {

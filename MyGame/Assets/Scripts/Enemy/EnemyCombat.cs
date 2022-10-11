@@ -12,7 +12,6 @@ public class EnemyCombat : MonoBehaviour
     public float _attackRadius = 0.4f;
     public LayerMask _player;
     public int _damage = 20;
-    public float _attackRate = 1f; // 1 атака в секунду
     private float _nextAttackTime = 0f;
 
 
@@ -24,23 +23,41 @@ public class EnemyCombat : MonoBehaviour
 
     public bool _isDead = false;
 
+    private bool _blockAttackForHurt = false;
+
     void Start()
     {
         _currentHelth = _maxHelth;
-        _hurtCount = 0;
     }
     void Update()
     {
-        if(Time.time >= _nextAttackTime /*&& !_playerCombat._isDead */)
+        if(Time.time >= _nextAttackTime && !_blockAttackForHurt)
         {
             if (Physics2D.OverlapCircleAll(_attackPoint.position, _attackRadius, _player).Length != 0)
             {
                 Attack();
             }
         }
+        BlockAttackForHurt();
+    }
+
+    public bool _blockMoveAttack;
+    private float hurtTime = 0.5f;
+    private float timerHurt = 0;
+    private void BlockAttackForHurt()
+    {
+        if (_blockAttackForHurt)
+        {
+            if ((timerHurt += Time.deltaTime) >= hurtTime)
+            {
+                _blockAttackForHurt = false;
+                timerHurt = 0;
+            }
+        }
     }
     public void TakeDamage(int damage)
     {
+        _blockAttackForHurt = true;
         if (_controller._currentState != EnemyController.State.COMBAT)
             _controller._currentState = EnemyController.State.COMBAT;
         _animator.SetBool("CombatIdle", true);
@@ -64,6 +81,7 @@ public class EnemyCombat : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         GetComponent<EnemyMovement>().enabled = false;
         GetComponent<EnemyController>().enabled = false;
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         this.enabled = false;
     }
     private void Attack()
@@ -76,7 +94,8 @@ public class EnemyCombat : MonoBehaviour
     void MakeDamage()
     {
         Collider2D hitPlayer = Physics2D.OverlapCircle(_attackPoint.position, _attackRadius, _player);
-        hitPlayer.GetComponent<PlayerCombat>().TakeDamage(_damage);
+        if(hitPlayer.GetComponent<Rigidbody2D>().velocity.y == 0)
+            hitPlayer.GetComponent<PlayerCombat>().TakeDamage(_damage);
     }
     private void OnDrawGizmosSelected()
     {

@@ -14,7 +14,7 @@ public class CharacterController : MonoBehaviour
 	[SerializeField] private Transform _groundCheckTransform;
 	[SerializeField] private Transform _wallCheckTransform;
 
-	private const float _groundCheckRadius = 0.2f;
+	private const float _groundCheckRadius = 0.1f;
 	private const float _wallCheckRadius = 0.2f;
 	private bool _lookAtRight = true;
 
@@ -31,16 +31,7 @@ public class CharacterController : MonoBehaviour
 	public UnityEvent IsFallingEvent;
 	public UnityEvent WallSliding;
 
-	private bool _blockMoveSlide;
-	private float jumpWallTime = 0.2f;
-	private float timerJumpWall = 0;
 	public Vector2 jumpAngle = new Vector2(3.5f, 10);
-
-	public bool _blockMoveAttack1;
-	public bool _blockMoveAttack2;
-	public bool _blockMoveAttack3;
-	private float attackTime = 0.5f;
-	private float timerAttack = 0;
 
 	private void Awake()
 	{
@@ -83,7 +74,7 @@ public class CharacterController : MonoBehaviour
 	}
 	public void Move(float move, bool jump)
 	{
-        if (!_blockMoveSlide && !_blockMoveAttack1 && !_blockMoveAttack2 ! && !_blockMoveAttack3)
+        if (!_blockMoveSlide && !_blockMoveAttack1 && !_blockMoveAttack2 ! && !_blockMoveAttack3 && !_blockMoveForHurt)
         {
 			Vector2 targetVelocity = new Vector2(move * 10f, _rigidbody.velocity.y);
 			_rigidbody.velocity = Vector2.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _velocity, _movementSmoothing);
@@ -94,6 +85,7 @@ public class CharacterController : MonoBehaviour
         }
 		blockMoveForSlideJump();
 		blockMoveForAttack();
+		blockMoveForHurt();
 	}
 	private void Flip()
 	{
@@ -139,6 +131,10 @@ public class CharacterController : MonoBehaviour
 				_rigidbody.velocity = new Vector2(transform.localScale.x - jumpAngle.x, jumpAngle.y);
 		}
 	}
+
+	private bool _blockMoveSlide;
+	private float jumpWallTime = 0.2f;
+	private float timerJumpWall = 0;
 	private void blockMoveForSlideJump()
     {
 		if (_blockMoveSlide && ((timerJumpWall += Time.deltaTime) >= jumpWallTime))
@@ -150,6 +146,12 @@ public class CharacterController : MonoBehaviour
 			}
 		}
 	}
+
+	public bool _blockMoveAttack1;
+	public bool _blockMoveAttack2;
+	public bool _blockMoveAttack3;
+	private float attackTime = 0.5f;
+	private float timerAttack = 0;
 	public void blockMoveForAttack()
     {
 		if (_blockMoveAttack1)
@@ -177,6 +179,22 @@ public class CharacterController : MonoBehaviour
 			{
 				_blockMoveAttack3 = false;
 				timerAttack = 0;
+			}
+		}
+	}
+
+	public bool _blockMoveForHurt;
+	private float hurtTime = 0.3f;
+	private float timerHurt = 0;
+	private void blockMoveForHurt()
+	{
+		if (_blockMoveForHurt)
+		{
+			_rigidbody.velocity = new Vector2(0f, 0f);
+			if ((timerHurt += Time.deltaTime) >= hurtTime)
+			{
+				_blockMoveForHurt = false;
+				timerHurt = 0;
 			}
 		}
 	}
