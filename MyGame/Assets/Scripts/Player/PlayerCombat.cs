@@ -32,7 +32,9 @@ public class PlayerCombat : MonoBehaviour
     }
     void Update()
     {
-        if(_controller._isGrounded && !_controller._isSliding && !_blockAttackForHurt && _currentStamina > 30)
+        if (_currentStamina < _maxStamina)
+            _currentStamina += 0.05f;
+        if (_controller._isGrounded && !_controller._isSliding && !_blockAttackForHurt && _currentStamina > 30)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -42,13 +44,6 @@ public class PlayerCombat : MonoBehaviour
         }
         blockAttackForHurt();
     }
-
-    private void FixedUpdate()
-    {
-        if (_currentStamina < _maxStamina)
-            _currentStamina += 0.2f;
-    }
-
 
     public bool _blockAttackForHurt = false;
     private float hurtTime = 0.2f;
@@ -61,6 +56,21 @@ public class PlayerCombat : MonoBehaviour
             {
                 _blockAttackForHurt = false;
                 hurtTime = 0;
+            }
+        }
+    }
+
+    public bool _blockHurtForAttack = false;
+    private float attackTime = 0.2f;
+    private float timerAttack = 0;
+    private void blockHurtForAttack()
+    {
+        if (_blockHurtForAttack)
+        {
+            if ((timerAttack += Time.deltaTime) >= attackTime)
+            {
+                _blockHurtForAttack = false;
+                attackTime = 0;
             }
         }
     }
@@ -100,7 +110,7 @@ public class PlayerCombat : MonoBehaviour
     {
         _controller._blockMoveAttack2 = true;
         _animator.SetBool("Attack2",true);
-        MakeDamage(20);
+        MakeDamage(30);
     }
     void Attack3()
     {
@@ -108,7 +118,7 @@ public class PlayerCombat : MonoBehaviour
         _animator.SetBool("Attack3", true);
         MakeDamage(40);
     }
-    void MakeDamage(int damage)
+    private void MakeDamage(int damage)
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRadius, _enemies);
         foreach (Collider2D enemy in hitEnemies)
@@ -118,13 +128,16 @@ public class PlayerCombat : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        _animator.SetTrigger("Hurt");
-        _controller._blockMoveForHurt = true;
-        _currentHelth -= damage;
-        if (_currentHelth <= 0)
-        {
-            Die();
+        if(!_blockHurtForAttack){
+            _animator.SetTrigger("Hurt");
+            _controller._blockMoveForHurt = true;
+            _currentHelth -= damage;
+            if (_currentHelth <= 0)
+            {
+                Die();
+            }
         }
+        blockHurtForAttack();
     }
     private void Die()
     {

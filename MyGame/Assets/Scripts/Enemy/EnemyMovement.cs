@@ -13,11 +13,9 @@ public class EnemyMovement : MonoBehaviour
     public float _runSpeed = 30f;
     float _horizontalMove = 0f;
 
-
     public float _biasHurtSpeed = 6f;
-    public float _biasHurt = 0.1f;
+    public float _biasHurt = 0.05f;
     public Vector3 _prevPosition;
-
 
     void Start()
     {
@@ -29,19 +27,22 @@ public class EnemyMovement : MonoBehaviour
         switch (_controller._currentState)
         {
             case EnemyController.State.IDLE:
+                IdleBehaviour();
                 break;
             case EnemyController.State.COMBAT:
                 CombatBehavior();
                 break;
             case EnemyController.State.IDLECOMBAT:
-
+                IdleCombatBehaviour();
+                break;
+            case EnemyController.State.DEATH:
+                DeathBehaviour();
                 break;
         }
     }
     private void FixedUpdate()
     {
-        if(!_enemyCombat._isDead)
-            _controller.MoveToPlayer(_horizontalMove * Time.fixedDeltaTime);
+        _controller.MoveToPlayer(_horizontalMove * Time.fixedDeltaTime);
     }
     private void HurtBias()
     {
@@ -85,5 +86,19 @@ public class EnemyMovement : MonoBehaviour
                 _horizontalMove = _runSpeed;
         }
         _animator.SetFloat("Speed", Math.Abs(_horizontalMove));     
+    }
+    private void IdleBehaviour()
+    {
+        _horizontalMove = 0;
+        _animator.SetFloat("Speed", Math.Abs(_horizontalMove));
+    }
+    private void IdleCombatBehaviour()
+    {
+        _horizontalMove = 0;
+        _animator.SetFloat("Speed", Math.Abs(_horizontalMove));
+    }
+    private void DeathBehaviour()
+    {
+        _horizontalMove = 0;
     }
 }

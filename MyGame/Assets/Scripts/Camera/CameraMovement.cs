@@ -21,7 +21,7 @@ public class CameraMovement : MonoBehaviour
         if(_target != null)
         {
             Vector3 targetPosition = new Vector3(_target.position.x, _target.position.y, -10);
-            Move(targetPosition);
+            //Move(targetPosition);
         }
     }
 

@@ -16,14 +16,9 @@ public class EnemyCombat : MonoBehaviour
 
 
     public int _maxHelth = 100;
-    private int _currentHelth;
+    public int _currentHelth;
 
     public int _hurtCount = 0;
-
-
-    public bool _isDead = false;
-
-    private bool _blockAttackForHurt = false;
 
     void Start()
     {
@@ -31,57 +26,55 @@ public class EnemyCombat : MonoBehaviour
     }
     void Update()
     {
-        if(Time.time >= _nextAttackTime && !_blockAttackForHurt)
+        BlockAttackForHurt();
+        if ((Time.time >= _nextAttackTime) && (Time.time >= timerHurt))
         {
             if (Physics2D.OverlapCircleAll(_attackPoint.position, _attackRadius, _player).Length != 0)
             {
                 Attack();
             }
         }
-        BlockAttackForHurt();
     }
 
-    public bool _blockMoveAttack;
-    private float hurtTime = 0.5f;
+    private float hurtTime = 0.6f;
     private float timerHurt = 0;
     private void BlockAttackForHurt()
     {
-        if (_blockAttackForHurt)
-        {
-            if ((timerHurt += Time.deltaTime) >= hurtTime)
-            {
-                _blockAttackForHurt = false;
-                timerHurt = 0;
-            }
-        }
+        if (_hurtCount == 1)
+            timerHurt = Time.time + hurtTime;
+        else if(_hurtCount > 1)
+            timerHurt += hurtTime;
     }
     public void TakeDamage(int damage)
     {
-        _blockAttackForHurt = true;
-        if (_controller._currentState != EnemyController.State.COMBAT)
-            _controller._currentState = EnemyController.State.COMBAT;
-        _animator.SetBool("CombatIdle", true);
-        _currentHelth -= damage;
-        ++_hurtCount;
-        _controller.blockMoveForHurt(_hurtCount);
-        if (_hurtCount == 1)
+        if (!_isDead)
         {
-            _enemyMovement._prevPosition = transform.position;
-        }
-        _animator.SetTrigger("Hurt");
-        if (_currentHelth <= 0)
-        {
-            Die();
+            if (_controller._currentState != EnemyController.State.COMBAT)
+                _controller._currentState = EnemyController.State.COMBAT;
+            _animator.SetBool("CombatIdle", true);
+            _currentHelth -= damage;
+            ++_hurtCount;
+            _controller.blockMoveForHurt(_hurtCount);
+            if (_hurtCount == 1)    // --- HurtBias --- \\
+            {
+                _enemyMovement._prevPosition = transform.position;
+            }
+            _animator.SetTrigger("Hurt");
+            if (_currentHelth <= 0)
+            {
+                Die();
+            }
         }
     }
+
+    private bool _isDead = false;
     private void Die()
     {
         _isDead = true;
         _animator.SetBool("isDead", true);
-        GetComponent<Collider2D>().enabled = false;
+        _controller._currentState = EnemyController.State.DEATH;
         GetComponent<EnemyMovement>().enabled = false;
         GetComponent<EnemyController>().enabled = false;
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         this.enabled = false;
     }
     private void Attack()
@@ -91,7 +84,7 @@ public class EnemyCombat : MonoBehaviour
         _controller._blockMoveAttack = true;
         MakeDamage();
     }
-    void MakeDamage()
+    private void MakeDamage()
     {
         Collider2D hitPlayer = Physics2D.OverlapCircle(_attackPoint.position, _attackRadius, _player);
         if(hitPlayer.GetComponent<Rigidbody2D>().velocity.y == 0)

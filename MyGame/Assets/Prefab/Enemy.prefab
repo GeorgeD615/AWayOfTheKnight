@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3332543027501809854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7497586955106650794}
+  m_Layer: 8
+  m_Name: TriggerPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7497586955106650794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3332543027501809854}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6235500837852808929}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3683362451513923392
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,6 +98,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4240757249010317400}
+  - {fileID: 7497586955106650794}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -186,6 +218,8 @@ MonoBehaviour:
   _animator: {fileID: 6235500837852808943}
   _playerTransform: {fileID: 0}
   _movementSmoothing: 0.05
+  _triggerZoneSize: {x: 0, y: 0}
+  _triggerPoint: {fileID: 0}
   _lookAtRight: 0
   _currentState: 0
   _blockMoveHurt: 0
@@ -224,6 +258,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 0}
+  _enemyMovement: {fileID: 0}
+  _playerCombat: {fileID: 0}
   _animator: {fileID: 0}
   _attackPoint: {fileID: 0}
   _attackRadius: 0.4
@@ -231,7 +267,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _damage: 20
-  _attackRate: 2
+  _maxHelth: 100
+  _hurtCount: 0
+  _isDead: 0
+  _blockMoveAttack: 0
 --- !u!114 &3341382419985887615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,10 +283,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a95da1b1d641724d952070c0d6a3c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 6235500837852808943}
   _playerTransform: {fileID: 0}
   _controller: {fileID: 6235500837852808941}
+  _enemyCombat: {fileID: 0}
+  _animator: {fileID: 6235500837852808943}
   _runSpeed: 10
-  _maxHelth: 5000
   _biasHurtSpeed: 6
   _biasHurt: 0.2
+  _prevPosition: {x: 0, y: 0, z: 0}

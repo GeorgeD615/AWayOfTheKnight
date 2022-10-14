@@ -12,12 +12,18 @@ public class EnemyController : MonoBehaviour
 
     [Range(0, 0.3f)] [SerializeField] private float _movementSmoothing = 0.05f;
 
+    [SerializeField] private BoxCollider2D boxCollider;
+    [SerializeField] private float _rangeX;
+    [SerializeField] private float _rangeY;
+    [SerializeField] private float _colliderDistanceX;
+    [SerializeField] private float _colliderDistanceY;
+
     public bool _lookAtRight = false;
 
     private Rigidbody2D _rigidbody;
     private Vector2 _velocity = Vector2.zero;
 
-    public enum State {IDLE, IDLECOMBAT, COMBAT};
+    public enum State {IDLE, IDLECOMBAT, COMBAT, DEATH};
     public State _currentState;
 
     private void Awake()
@@ -33,10 +39,7 @@ public class EnemyController : MonoBehaviour
         switch (_currentState)
         {
             case State.IDLE:
-                RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 1f), -transform.right, 5f, _playerLayer);
-                Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + 1f), -transform.right * 5f, Color.red);
-
-                if ((hit.collider != null) || (Math.Abs(_playerTransform.position.x - transform.position.x) <= 0.7))
+                if (PlayerInSight())
                 {
                     _currentState = State.COMBAT;
                     _animator.SetBool("CombatIdle", true);
@@ -45,8 +48,14 @@ public class EnemyController : MonoBehaviour
             case State.COMBAT:
                 if ((_playerTransform.position.x <= transform.position.x && _lookAtRight) || (_playerTransform.position.x > transform.position.x && !_lookAtRight))
                     Flip();
+                if (!PlayerInSight())
+                    _currentState = State.IDLECOMBAT;
                 break;
             case State.IDLECOMBAT:
+                if (PlayerInSight())
+                    _currentState = State.COMBAT;
+                break;
+            case State.DEATH:
                 break;
             
         }
@@ -54,21 +63,24 @@ public class EnemyController : MonoBehaviour
     }
     public void MoveToPlayer(float move)
     {
-        if (Time.time > timerHurt && !_blockMoveAttack)
-        {      
-            Vector2 targetVelocity = new Vector2(move * 10f, _rigidbody.velocity.y);
-            _rigidbody.velocity = Vector2.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _velocity, _movementSmoothing);
-            ChangeDirection(move);
-        }
-        else
+        if(_currentState == State.COMBAT)
         {
-            _rigidbody.velocity = new Vector2(0f, 0f);
+            if (Time.time > timerHurt && !_blockMoveAttack)
+            {
+                Vector2 targetVelocity = new Vector2(move * 10f, _rigidbody.velocity.y);
+                _rigidbody.velocity = Vector2.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _velocity, _movementSmoothing);
+                ChangeDirection(move);
+            }
+            else
+            {
+                _rigidbody.velocity = new Vector2(0f, 0f);
+            }
+            blockMoveForAttack();
         }
-        blockMoveForAttack();
     }
 
     public bool _blockMoveHurt;
-    private float HurtTime = 0.6f;
+    private float HurtTime = 0.5f;
     private float timerHurt = 0;
     public void blockMoveForHurt(int hitCount)
     {
@@ -100,7 +112,6 @@ public class EnemyController : MonoBehaviour
     public bool _blockMoveAttack;
     private float attackTime = 0.7f;
     private float timerAttack = 0;
-
     public void blockMoveForAttack()
     {
         if (_blockMoveAttack)
@@ -112,5 +123,19 @@ public class EnemyController : MonoBehaviour
                 timerAttack = 0;
             }
         }
+    }
+    private bool PlayerInSight()
+    {
+        RaycastHit2D hit =
+                    Physics2D.BoxCast(boxCollider.bounds.center - transform.right * _rangeX * transform.localScale.x * _colliderDistanceX + transform.up * _rangeY * _colliderDistanceY,
+                    new Vector3(boxCollider.bounds.size.x * _rangeX, boxCollider.bounds.size.y * _rangeY, boxCollider.bounds.size.z),
+                    0, Vector2.left, 0, _playerLayer);
+        return hit.collider != null;
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(boxCollider.bounds.center - transform.right * _rangeX * transform.localScale.x * _colliderDistanceX + transform.up * _rangeY * _colliderDistanceY,
+            new Vector3(boxCollider.bounds.size.x * _rangeX, boxCollider.bounds.size.y*_rangeY, boxCollider.bounds.size.z));
     }
 }
