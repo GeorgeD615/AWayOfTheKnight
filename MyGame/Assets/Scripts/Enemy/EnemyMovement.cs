@@ -11,7 +11,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private Animator _animator;
 
     public float _runSpeed = 30f;
-    float _horizontalMove = 0f;
+    public float _horizontalMove = 0f;
 
     public float _biasHurtSpeed = 6f;
     public float _biasHurt = 0.05f;
@@ -52,7 +52,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 if (_controller._lookAtRight) _controller.Flip();
                 transform.position = Vector3.Lerp(transform.position, new Vector3(_prevPosition.x + _biasHurt, _prevPosition.y, _prevPosition.z), _biasHurtSpeed * Time.deltaTime);
-                if (transform.position.x >= _prevPosition.x + (_biasHurt - 0.01f))
+                if (transform.position.x >= _prevPosition.x + (_biasHurt - 0.05f))
                 {
                     --_enemyCombat._hurtCount;
                     if (_enemyCombat._hurtCount != 0)
@@ -63,7 +63,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 if (!_controller._lookAtRight) _controller.Flip();
                 transform.position = Vector3.Lerp(transform.position, new Vector3(_prevPosition.x - _biasHurt, _prevPosition.y, _prevPosition.z), _biasHurtSpeed * Time.deltaTime);
-                if (transform.position.x <= _prevPosition.x - (_biasHurt - 0.01f))
+                if (transform.position.x <= _prevPosition.x - (_biasHurt - 0.05f))
                 {
                     --_enemyCombat._hurtCount;
                     if (_enemyCombat._hurtCount != 0)

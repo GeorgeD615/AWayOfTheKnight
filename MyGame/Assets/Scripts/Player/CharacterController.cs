@@ -15,7 +15,7 @@ public class CharacterController : MonoBehaviour
 	[SerializeField] private Transform _wallCheckTransform;
 
 	private const float _groundCheckRadius = 0.1f;
-	private const float _wallCheckRadius = 0.2f;
+	private const float _wallCheckRadius = 0.1f;
 	private bool _lookAtRight = true;
 
 	public bool _isGrounded;

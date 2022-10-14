@@ -69,7 +69,6 @@ public class EnemyController : MonoBehaviour
             {
                 Vector2 targetVelocity = new Vector2(move * 10f, _rigidbody.velocity.y);
                 _rigidbody.velocity = Vector2.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _velocity, _movementSmoothing);
-                ChangeDirection(move);
             }
             else
             {
@@ -77,9 +76,12 @@ public class EnemyController : MonoBehaviour
             }
             blockMoveForAttack();
         }
+        else
+        {
+            _rigidbody.velocity = new Vector2(0f, 0f);
+        }
+        ChangeDirection(move);
     }
-
-    public bool _blockMoveHurt;
     private float HurtTime = 0.5f;
     private float timerHurt = 0;
     public void blockMoveForHurt(int hitCount)
