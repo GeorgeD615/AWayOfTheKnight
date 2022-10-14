@@ -19,26 +19,34 @@ public class PlayerCombat : MonoBehaviour
     private float _doubleClickTime = 0.2f;
     int _clickCount = 0;
 
+    public HealthBarScript _healthBar;
+    public StaminaScript _stamina;
+
     public int _maxHelth = 100;
     public int _currentHelth;
-    public float _maxStamina = 100;
-    public float _currentStamina;
+    public int _maxStamina = 10000;
+    public int _currentStamina;
 
     void Start()
     {
         _currentHelth = _maxHelth;
         _currentStamina = _maxStamina;
+        _healthBar.SetMaxHelth(_maxHelth);
+        _stamina.SetMaxStamina(_maxStamina);
         _rigidbody = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
         if (_currentStamina < _maxStamina)
-            _currentStamina += 0.05f;
-        if (_controller._isGrounded && !_controller._isSliding && !_blockAttackForHurt && _currentStamina > 30)
+        {
+            _currentStamina += 5;
+            _stamina.SetStamina(_currentStamina);
+        }
+        if (_controller._isGrounded && !_controller._isSliding && !_blockAttackForHurt && _currentStamina > 3000)
         {
             if (Input.GetMouseButtonDown(0))
             {
-                _currentStamina -= 30;
+                _currentStamina -= 3000;
                 AttackCombo();
             }
         }
@@ -132,6 +140,7 @@ public class PlayerCombat : MonoBehaviour
             _animator.SetTrigger("Hurt");
             _controller._blockMoveForHurt = true;
             _currentHelth -= damage;
+            _healthBar.SetHelth(_currentHelth);
             if (_currentHelth <= 0)
             {
                 Die();
