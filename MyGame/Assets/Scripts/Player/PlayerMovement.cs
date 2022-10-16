@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _horizontalMove = Input.GetAxisRaw("Horizontal") * _runSpeed;
         _animator.SetFloat("Speed", Math.Abs(_horizontalMove));
-        if (!_controller._blockMoveAttack1 && !_controller._blockMoveAttack2 && !_controller._blockMoveAttack3)
+        if (!_controller._blockMoveAttack1 && !_controller._blockMoveAttack2 && !_controller._blockMoveAttack3 && !_controller._isBlocking)
         {
             if (Input.GetButtonDown("Jump"))
             {

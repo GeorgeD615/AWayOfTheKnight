@@ -27,6 +27,9 @@ public class PlayerCombat : MonoBehaviour
     public int _maxStamina = 10000;
     public int _currentStamina;
 
+    public bool _isBlock = false;
+    private bool _unBlock = false;
+
     void Start()
     {
         _currentHelth = _maxHelth;
@@ -37,17 +40,29 @@ public class PlayerCombat : MonoBehaviour
     }
     void Update()
     {
-        if (_currentStamina < _maxStamina)
+        if ((_currentStamina < _maxStamina) && !_isBlock)
         {
             _currentStamina += 5;
             _stamina.SetStamina(_currentStamina);
         }
-        if (_controller._isGrounded && !_controller._isSliding && !_blockAttackForHurt && _currentStamina > 3000)
+        if (_controller._isGrounded && !_controller._isSliding && !_blockAttackForHurt)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && _currentStamina > 3000)
             {
                 _currentStamina -= 3000;
                 AttackCombo();
+            }
+            if (Input.GetMouseButtonDown(1))
+                _unBlock = false;
+            if (Input.GetMouseButton(1) && _currentStamina > 0 && !_unBlock)
+            {
+                _currentStamina -= 5;
+                _stamina.SetStamina(_currentStamina);
+                Block();
+            }
+            if (Input.GetMouseButtonUp(1) || _currentStamina <= 0)
+            {
+                UnBlock();
             }
         }
         blockAttackForHurt();
@@ -81,6 +96,24 @@ public class PlayerCombat : MonoBehaviour
                 attackTime = 0;
             }
         }
+    }
+    void Block()
+    {
+        if (!_isBlock)
+        {
+            _animator.SetTrigger("Block");
+            _animator.SetBool("UnBlock", false);
+        }
+        _unBlock = false;
+        _isBlock = true;
+        _controller._isBlocking = true;
+    }
+    void UnBlock()
+    {
+        _isBlock = false;
+        _unBlock = true;
+        _controller._isBlocking = false;
+        _animator.SetBool("UnBlock", true);
     }
     void AttackCombo()
     {
@@ -136,7 +169,14 @@ public class PlayerCombat : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        if(!_blockHurtForAttack){
+        if (_isBlock)
+        {
+            _animator.SetTrigger("BlockDamage");
+            if (_currentStamina > 2000)
+                _currentStamina -= 2000;
+            else
+                _currentStamina = 0;
+        }else if(!_blockHurtForAttack){
             _animator.SetTrigger("Hurt");
             _controller._blockMoveForHurt = true;
             _currentHelth -= damage;

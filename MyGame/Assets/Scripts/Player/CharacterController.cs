@@ -20,6 +20,7 @@ public class CharacterController : MonoBehaviour
 
 	public bool _isGrounded;
 	public bool _isSliding;
+	public bool _isBlocking;
 
 	private Rigidbody2D _rigidbody;
 	private Vector2 _velocity = Vector2.zero;
@@ -76,12 +77,19 @@ public class CharacterController : MonoBehaviour
 	{
         if (!_blockMoveSlide && !_blockMoveAttack1 && !_blockMoveAttack2 ! && !_blockMoveAttack3 && !_blockMoveForHurt)
         {
-			Vector2 targetVelocity = new Vector2(move * 10f, _rigidbody.velocity.y);
-			_rigidbody.velocity = Vector2.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _velocity, _movementSmoothing);
+            if (!_isBlocking)
+            {
+				Vector2 targetVelocity = new Vector2(move * 10f, _rigidbody.velocity.y);
+				_rigidbody.velocity = Vector2.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _velocity, _movementSmoothing);
 
-			ChangeDirection(move);
-			Jump(jump);
-			Slide(jump);
+				ChangeDirection(move);
+				Jump(jump);
+				Slide(jump);
+            }
+            else
+            {
+				_rigidbody.velocity = new Vector2(0f, 0f);
+			}
         }
 		blockMoveForSlideJump();
 		blockMoveForAttack();
