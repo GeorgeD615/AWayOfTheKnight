@@ -16,6 +16,7 @@ ___
         - [X] Передвижение (бег, прыжок, скольжение по стенам, прыжок от стены):running:
         ![movement_gif](https://github.com/GeorgeD615/GameProject/blob/main/GameplayRecording/PlayerMovement.gif?raw=true)
         - [X]  Атака в ближнем бою :facepunch:
+        ![combat_gif](https://github.com/GeorgeD615/GameProject/blob/main/GameplayRecording/PlayerCombat.gif?raw=true)
         - [ ]  Блокирование :raised_hand:
         - [ ]  Сбор сокровищ (монеты, драгоценные камни и т. п.) :gem:
         - [ ]  Ловушки в окружении:bomb:
