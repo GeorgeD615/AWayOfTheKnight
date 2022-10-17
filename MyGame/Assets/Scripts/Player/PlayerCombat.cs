@@ -30,6 +30,9 @@ public class PlayerCombat : MonoBehaviour
     public bool _isBlock = false;
     private bool _unBlock = false;
 
+    float staminaRecoveryTime;
+    bool staminaRecoveryBlock;
+
     void Start()
     {
         _currentHelth = _maxHelth;
@@ -40,9 +43,15 @@ public class PlayerCombat : MonoBehaviour
     }
     void Update()
     {
-        if ((_currentStamina < _maxStamina) && !_isBlock)
+        if(!staminaRecoveryBlock && _currentStamina <= 0)
+        {
+            staminaRecoveryTime = Time.time + 3f;
+            staminaRecoveryBlock = true;
+        }
+        if ((_currentStamina < _maxStamina) && !_isBlock && Time.time > staminaRecoveryTime)
         {
             _currentStamina += 5;
+            staminaRecoveryBlock = false;
             _stamina.SetStamina(_currentStamina);
         }
         if (_controller._isGrounded && !_controller._isSliding && !_blockAttackForHurt)
@@ -176,7 +185,9 @@ public class PlayerCombat : MonoBehaviour
                 _currentStamina -= 2000;
             else
                 _currentStamina = 0;
-        }else if(!_blockHurtForAttack){
+            _stamina.SetStamina(_currentStamina);
+        }
+        else if(!_blockHurtForAttack){
             _animator.SetTrigger("Hurt");
             _controller._blockMoveForHurt = true;
             _currentHelth -= damage;
@@ -192,6 +203,7 @@ public class PlayerCombat : MonoBehaviour
     {
         _animator.SetBool("isDead", true);
         _rigidbody.gravityScale = 0;
+        _rigidbody.velocity = new Vector2(0, 0);
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<CircleCollider2D>().enabled = false;
         GetComponent<CharacterController>().enabled = false;
