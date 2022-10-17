@@ -17,7 +17,8 @@ ___
         ![movement_gif](https://github.com/GeorgeD615/GameProject/blob/main/GameplayRecording/PlayerMovement.gif?raw=true)
         - [X]  Атака в ближнем бою :facepunch:
         ![combat_gif](https://github.com/GeorgeD615/GameProject/blob/main/GameplayRecording/PlayerCombat.gif?raw=true)
-        - [ ]  Блокирование :raised_hand:
+        - [X]  Блокирование :raised_hand:
+        ![combat_gif](https://github.com/GeorgeD615/GameProject/blob/main/GameplayRecording/PlayerBlock.gif?raw=true)
         - [ ]  Сбор сокровищ (монеты, драгоценные камни и т. п.) :gem:
         - [ ]  Ловушки в окружении:bomb:
 2.  Игровые сцены (игрок переходит последовательно из одной в другую)	
