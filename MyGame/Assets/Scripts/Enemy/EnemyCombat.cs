@@ -88,7 +88,7 @@ public class EnemyCombat : MonoBehaviour
     {
         Collider2D hitPlayer = Physics2D.OverlapCircle(_attackPoint.position, _attackRadius, _player);
         if(hitPlayer.GetComponent<Rigidbody2D>().velocity.y == 0)
-            hitPlayer.GetComponent<PlayerCombat>().TakeDamage(_damage);
+            hitPlayer.GetComponent<PlayerCombat>().TakeDamage(_damage, _controller._lookAtRight);
     }
     private void OnDrawGizmosSelected()
     {

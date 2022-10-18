@@ -176,9 +176,9 @@ public class PlayerCombat : MonoBehaviour
             enemy.GetComponent<EnemyCombat>().TakeDamage(damage);
         }
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage , bool enemyLookAtRight)
     {
-        if (_isBlock)
+        if (_isBlock && ((_controller._lookAtRight != enemyLookAtRight)) )
         {
             _animator.SetTrigger("BlockDamage");
             if (_currentStamina > 2000)

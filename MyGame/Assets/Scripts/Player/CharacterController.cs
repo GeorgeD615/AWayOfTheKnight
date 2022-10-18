@@ -16,7 +16,7 @@ public class CharacterController : MonoBehaviour
 
 	private const float _groundCheckRadius = 0.1f;
 	private const float _wallCheckRadius = 0.1f;
-	private bool _lookAtRight = true;
+	public bool _lookAtRight = true;
 
 	public bool _isGrounded;
 	public bool _isSliding;
