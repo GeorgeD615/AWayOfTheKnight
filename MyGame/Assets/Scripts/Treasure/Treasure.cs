@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Treasure : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int points_price = 100;
+    public GameManager _manager;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
+
 }
