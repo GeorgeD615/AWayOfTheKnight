@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Treasure : MonoBehaviour
 {
-    public int points_price = 100;
-    public GameManager _manager;
+    public int points_price = 1;
     void Start()
     {
         
