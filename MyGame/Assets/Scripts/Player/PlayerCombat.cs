@@ -176,8 +176,16 @@ public class PlayerCombat : MonoBehaviour
             enemy.GetComponent<EnemyCombat>().TakeDamage(damage);
         }
     }
-    public void TakeDamage(int damage , bool enemyLookAtRight)
+    public void TakeDamage(int damage , bool enemyLookAtRight, bool damgeFromTrap = false)
     {
+        if (damgeFromTrap)
+        {
+            _currentHelth = 0;
+            _healthBar.SetHelth(_currentHelth);
+            Die();
+            return;
+        }
+
         if (_isBlock && ((_controller._lookAtRight != enemyLookAtRight)) )
         {
             _animator.SetTrigger("BlockDamage");
@@ -209,6 +217,17 @@ public class PlayerCombat : MonoBehaviour
         GetComponent<CharacterController>().enabled = false;
         GetComponent<PlayerMovement>().enabled = false;
         this.enabled = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 6)
+        {
+            _animator.SetBool("Falling", false); 
+            _animator.SetBool("Jumping", false);
+            _animator.SetTrigger("Hurt");
+            TakeDamage(0, false, true);
+        }
     }
     private void OnDrawGizmosSelected()
     {

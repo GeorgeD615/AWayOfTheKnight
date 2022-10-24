@@ -13,10 +13,10 @@ public class EnemyController : MonoBehaviour
     [Range(0, 0.3f)] [SerializeField] private float _movementSmoothing = 0.05f;
 
     [SerializeField] private BoxCollider2D boxCollider;
-    [SerializeField] private float _rangeX;
-    [SerializeField] private float _rangeY;
-    [SerializeField] private float _colliderDistanceX;
-    [SerializeField] private float _colliderDistanceY;
+    private float _rangeX = 20;
+    private float _rangeY = 2.5f;
+    private float _colliderDistanceX = 0.21f;
+    private float _colliderDistanceY = 0.4f;
 
     public bool _lookAtRight = false;
 
