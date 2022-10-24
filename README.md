@@ -21,7 +21,8 @@ ___
         ![combat_gif](https://github.com/GeorgeD615/GameProject/blob/main/GameplayRecording/PlayerBlock.gif?raw=true)
         - [X]  Сбор сокровищ (монеты, драгоценные камни и т. п.) :gem:
         ![collectables_gif](https://github.com/GeorgeD615/GameProject/blob/main/GameplayRecording/PlayerCollectables.gif?raw=true)
-        - [ ]  Ловушки в окружении:bomb:
+        - [X]  Ловушки в окружении:bomb:
+        ![traps_gif](https://github.com/GeorgeD615/GameProject/blob/main/GameplayRecording/Trap.gif?raw=true)
 2.  Игровые сцены (игрок переходит последовательно из одной в другую)	
     - [ ]  Exposition_scene :beginner:
         +  Назначение сцены: указать конечную цель (спасти принцессу, найти сокровище, победить дракона и т. п.), обучить механикам перемещения
