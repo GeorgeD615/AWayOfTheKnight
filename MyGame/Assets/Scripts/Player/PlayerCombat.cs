@@ -23,7 +23,7 @@ public class PlayerCombat : MonoBehaviour
     public StaminaScript _stamina;
 
     public int _maxHelth = 100;
-    public int _currentHelth;
+    public static int _currentHelth;
     public int _maxStamina = 10000;
     public int _currentStamina;
 

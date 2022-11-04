@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class PlayerCollectables : MonoBehaviour
 {
-    public int points = 0;
+    public static int points = 0;
     public LayerMask _treasureLayer;
     public Text _coinsCount;
-    public 
+
 
     void Start()
     {

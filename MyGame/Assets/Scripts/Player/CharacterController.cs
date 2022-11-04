@@ -25,6 +25,7 @@ public class CharacterController : MonoBehaviour
 	private Rigidbody2D _rigidbody;
 	private Vector2 _velocity = Vector2.zero;
 
+
 	[Header("Events")]
 	[Space]
 
@@ -34,7 +35,8 @@ public class CharacterController : MonoBehaviour
 
 	public Vector2 jumpAngle = new Vector2(3.5f, 10);
 
-	private void Awake()
+
+    private void Awake()
 	{
 		_rigidbody = GetComponent<Rigidbody2D>();
 
