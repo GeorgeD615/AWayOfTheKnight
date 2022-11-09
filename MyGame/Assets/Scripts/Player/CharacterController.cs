@@ -7,7 +7,9 @@ public class CharacterController : MonoBehaviour
 {
 	[SerializeField] private float _jumpHight = 700f;
 	[SerializeField] private float _slideSpeed = -2f; 
-	[Range(0, 0.3f)] [SerializeField] private float _movementSmoothing = 0.05f; 
+	[Range(0, 0.3f)] [SerializeField] private float _movementSmoothing = 0.05f;
+
+
 
 	[SerializeField] private LayerMask _groundLayerMask;
 	[SerializeField] private LayerMask _wallLayerMask;

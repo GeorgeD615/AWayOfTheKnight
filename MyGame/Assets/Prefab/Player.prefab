@@ -70,7 +70,6 @@ Transform:
   m_Children:
   - {fileID: 7157429296521818252}
   - {fileID: 7157429297020468583}
-  - {fileID: 7157429297419744497}
   - {fileID: 7157429297394934424}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -326,7 +325,6 @@ MonoBehaviour:
   _healthBar: {fileID: 0}
   _stamina: {fileID: 0}
   _maxHelth: 40
-  _currentHelth: 0
   _maxStamina: 10000
   _currentStamina: 0
   _isBlock: 0
@@ -344,7 +342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64cbdd7258d951f4ba1bc2432369bda2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: 0
   _treasureLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -405,37 +402,6 @@ Transform:
   m_GameObject: {fileID: 7157429297394934425}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.8, y: 0.8, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7157429296527975803}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7157429298305245012
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7157429297419744497}
-  m_Layer: 9
-  m_Name: CameraTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7157429297419744497
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7157429298305245012}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.23, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

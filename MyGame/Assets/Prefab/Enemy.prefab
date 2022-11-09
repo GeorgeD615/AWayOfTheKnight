@@ -218,11 +218,9 @@ MonoBehaviour:
   _animator: {fileID: 6235500837852808943}
   _playerTransform: {fileID: 0}
   _movementSmoothing: 0.05
-  _triggerZoneSize: {x: 0, y: 0}
-  _triggerPoint: {fileID: 0}
+  boxCollider: {fileID: 0}
   _lookAtRight: 0
   _currentState: 0
-  _blockMoveHurt: 0
   _blockMoveAttack: 0
 --- !u!50 &4914691587257283237
 Rigidbody2D:
@@ -268,9 +266,8 @@ MonoBehaviour:
     m_Bits: 0
   _damage: 20
   _maxHelth: 100
+  _currentHelth: 0
   _hurtCount: 0
-  _isDead: 0
-  _blockMoveAttack: 0
 --- !u!114 &3341382419985887615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +284,8 @@ MonoBehaviour:
   _controller: {fileID: 6235500837852808941}
   _enemyCombat: {fileID: 0}
   _animator: {fileID: 6235500837852808943}
-  _runSpeed: 10
+  _runSpeed: 20
+  _horizontalMove: 0
   _biasHurtSpeed: 6
   _biasHurt: 0.2
   _prevPosition: {x: 0, y: 0, z: 0}
