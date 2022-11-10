@@ -242,9 +242,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6732787378880084618, guid: d0c120f413f213743a341e832fbf7ce0, type: 3}
+      propertyPath: coins
+      value: 
+      objectReference: {fileID: 11400000, guid: 927f54c4059d9a34495a8a12b1440dcb, type: 2}
+    - target: {fileID: 6732787378880084618, guid: d0c120f413f213743a341e832fbf7ce0, type: 3}
       propertyPath: levelToLoad
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6732787378880084618, guid: d0c120f413f213743a341e832fbf7ce0, type: 3}
+      propertyPath: currentLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732787378880084618, guid: d0c120f413f213743a341e832fbf7ce0, type: 3}
+      propertyPath: _collectables
+      value: 
+      objectReference: {fileID: 1867938702}
     - target: {fileID: 6732787378880084619, guid: d0c120f413f213743a341e832fbf7ce0, type: 3}
       propertyPath: m_Name
       value: LevelChanger
@@ -529,6 +541,10 @@ PrefabInstance:
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 1946275426}
+    - target: {fileID: 7157429296527975788, guid: 17b64522ba6db9648ad7c2713d43a506, type: 3}
+      propertyPath: _levelChanger
+      value: 
+      objectReference: {fileID: 1433628214}
     - target: {fileID: 7157429296527975795, guid: 17b64522ba6db9648ad7c2713d43a506, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -541,6 +557,10 @@ PrefabInstance:
       propertyPath: _coinsCount
       value: 
       objectReference: {fileID: 1946275424}
+    - target: {fileID: 7157429296527975802, guid: 17b64522ba6db9648ad7c2713d43a506, type: 3}
+      propertyPath: _coinsFromPrevLevel
+      value: 
+      objectReference: {fileID: 11400000, guid: 927f54c4059d9a34495a8a12b1440dcb, type: 2}
     - target: {fileID: 7157429296527975803, guid: 17b64522ba6db9648ad7c2713d43a506, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -604,6 +624,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7157429296527975803, guid: 17b64522ba6db9648ad7c2713d43a506, type: 3}
   m_PrefabInstance: {fileID: 1867938700}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1867938702 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7157429296527975802, guid: 17b64522ba6db9648ad7c2713d43a506, type: 3}
+  m_PrefabInstance: {fileID: 1867938700}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64cbdd7258d951f4ba1bc2432369bda2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1946275423
 PrefabInstance:
   m_ObjectHideFlags: 0

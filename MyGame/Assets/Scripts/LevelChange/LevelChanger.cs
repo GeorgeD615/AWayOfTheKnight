@@ -6,7 +6,11 @@ using UnityEngine.SceneManagement;
 public class LevelChanger : MonoBehaviour
 {
     private Animator anim;
+    public CoinCounter coins;
+    public PlayerCollectables _collectables;
     public int levelToLoad;
+    public int currentLevel;
+    private bool isPlayerDead = false;
 
     private void Start()
     {
@@ -19,7 +23,21 @@ public class LevelChanger : MonoBehaviour
     }
     public void OnFadeComplete()
     {
-        SceneManager.LoadScene(levelToLoad);
+        if (isPlayerDead)
+        {
+            SceneManager.LoadScene(currentLevel);
+        }
+        else
+        {
+            coins.coins = _collectables.points;
+            SceneManager.LoadScene(levelToLoad);
+        }
+    }
+
+    public void Respawn()
+    {
+        isPlayerDead = true;
+        anim.SetTrigger("fade");
     }
 
 }

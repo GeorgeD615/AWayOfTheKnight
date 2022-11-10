@@ -20447,6 +20447,10 @@ PrefabInstance:
       propertyPath: _coinsCount
       value: 
       objectReference: {fileID: 297430645}
+    - target: {fileID: 7157429296527975802, guid: 17b64522ba6db9648ad7c2713d43a506, type: 3}
+      propertyPath: _coinsFromPrevLevel
+      value: 
+      objectReference: {fileID: 11400000, guid: 927f54c4059d9a34495a8a12b1440dcb, type: 2}
     - target: {fileID: 7157429296527975803, guid: 17b64522ba6db9648ad7c2713d43a506, type: 3}
       propertyPath: m_RootOrder
       value: 0

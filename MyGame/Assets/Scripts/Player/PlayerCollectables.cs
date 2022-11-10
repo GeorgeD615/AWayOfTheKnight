@@ -5,14 +5,16 @@ using UnityEngine.UI;
 
 public class PlayerCollectables : MonoBehaviour
 {
-    public static int points = 0;
+    public int points = 0;
     public LayerMask _treasureLayer;
     public Text _coinsCount;
+    public CoinCounter _coinsFromPrevLevel;
+
 
 
     void Start()
     {
-        
+        points = _coinsFromPrevLevel.coins;
     }
 
     void Update()

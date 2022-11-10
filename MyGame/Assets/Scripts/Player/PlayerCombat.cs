@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] private CharacterController _controller;
+    public LevelChanger _levelChanger = null;
     public Animator _animator;
     private Rigidbody2D _rigidbody;
 
@@ -216,6 +217,7 @@ public class PlayerCombat : MonoBehaviour
         GetComponent<CircleCollider2D>().enabled = false;
         GetComponent<CharacterController>().enabled = false;
         GetComponent<PlayerMovement>().enabled = false;
+        _levelChanger.Respawn();
         this.enabled = false;
     }
 
