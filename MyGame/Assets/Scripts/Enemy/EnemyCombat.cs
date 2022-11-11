@@ -45,8 +45,14 @@ public class EnemyCombat : MonoBehaviour
         else if(_hurtCount > 1)
             timerHurt += hurtTime;
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, bool damgeFromTrap = false)
     {
+        if (damgeFromTrap)
+        {
+            _currentHelth = 0;
+            Die();
+            return;
+        }
         if (!_isDead)
         {
             if (_controller._currentState != EnemyController.State.COMBAT)
@@ -89,6 +95,15 @@ public class EnemyCombat : MonoBehaviour
         Collider2D hitPlayer = Physics2D.OverlapCircle(_attackPoint.position, _attackRadius, _player);
         if(hitPlayer.GetComponent<Rigidbody2D>().velocity.y == 0)
             hitPlayer.GetComponent<PlayerCombat>().TakeDamage(_damage, _controller._lookAtRight);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 6 && !_isDead)
+        {
+            _animator.SetTrigger("Hurt");
+            TakeDamage(0, true);
+        }
     }
     private void OnDrawGizmosSelected()
     {

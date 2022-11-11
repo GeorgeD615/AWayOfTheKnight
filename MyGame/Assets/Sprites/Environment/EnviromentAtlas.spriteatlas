@@ -1,0 +1,201 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: EnviromentAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: ee3a07082322ae549a95d13b2ced1e75, type: 3}
+    - {fileID: 2800000, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+    - {fileID: 2800000, guid: f0beabbb5d3011e47837e45f8755f892, type: 3}
+    - {fileID: 2800000, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 4973291647907725761, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: 3466978235163156766, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: 2191860179481411028, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: 3110543383493609310, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: -4268324792407556631, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: -1521124595812461215, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: -4225614513224541889, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: -4019020845445251233, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: -8442812034501031916, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: 7085210396089640863, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: -4299002099324884053, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: 6561477441876990232, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: 8817860175875277366, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: -1208596345664779246, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: -6159047917020303499, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: -631214588862299545, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: 3039482398915548647, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: 1870595434455258622, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: -6564491317485195161, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: 1955535850108248286, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: 95044888397345745, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: 605004362904175053, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: 8638304571794784212, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: 8237092896848580756, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: -2017871089134382240, guid: 76ae1ae1ced594141a0eb530fe9a41cd, type: 3}
+  - {fileID: 3471627728669565437, guid: ee3a07082322ae549a95d13b2ced1e75, type: 3}
+  - {fileID: -3100955679298242261, guid: ee3a07082322ae549a95d13b2ced1e75, type: 3}
+  - {fileID: -4562700684305803436, guid: ee3a07082322ae549a95d13b2ced1e75, type: 3}
+  - {fileID: 4151593338874398399, guid: ee3a07082322ae549a95d13b2ced1e75, type: 3}
+  - {fileID: -1607942287564681079, guid: ee3a07082322ae549a95d13b2ced1e75, type: 3}
+  - {fileID: -5396322993023397326, guid: ee3a07082322ae549a95d13b2ced1e75, type: 3}
+  - {fileID: -8063536047432277934, guid: ee3a07082322ae549a95d13b2ced1e75, type: 3}
+  - {fileID: -7837313923048369528, guid: ee3a07082322ae549a95d13b2ced1e75, type: 3}
+  - {fileID: -909844860094452394, guid: ee3a07082322ae549a95d13b2ced1e75, type: 3}
+  - {fileID: 9045708980538230480, guid: ee3a07082322ae549a95d13b2ced1e75, type: 3}
+  - {fileID: 7861939716606296291, guid: ee3a07082322ae549a95d13b2ced1e75, type: 3}
+  - {fileID: -3127876791231375050, guid: ee3a07082322ae549a95d13b2ced1e75, type: 3}
+  - {fileID: 7231427558202066920, guid: ee3a07082322ae549a95d13b2ced1e75, type: 3}
+  - {fileID: 8067899533231551199, guid: ee3a07082322ae549a95d13b2ced1e75, type: 3}
+  - {fileID: -3739555818079486925, guid: f0beabbb5d3011e47837e45f8755f892, type: 3}
+  - {fileID: 7957477744908387802, guid: f0beabbb5d3011e47837e45f8755f892, type: 3}
+  - {fileID: -6789505140088453146, guid: f0beabbb5d3011e47837e45f8755f892, type: 3}
+  - {fileID: 6825304046783140270, guid: f0beabbb5d3011e47837e45f8755f892, type: 3}
+  - {fileID: 4870420222146354088, guid: f0beabbb5d3011e47837e45f8755f892, type: 3}
+  - {fileID: -3020682166362444536, guid: f0beabbb5d3011e47837e45f8755f892, type: 3}
+  - {fileID: -2162706323162181625, guid: f0beabbb5d3011e47837e45f8755f892, type: 3}
+  - {fileID: -7022422726276921754, guid: f0beabbb5d3011e47837e45f8755f892, type: 3}
+  - {fileID: -8549951703126532559, guid: f0beabbb5d3011e47837e45f8755f892, type: 3}
+  - {fileID: -7152663312917341408, guid: f0beabbb5d3011e47837e45f8755f892, type: 3}
+  - {fileID: 1676194873684150010, guid: f0beabbb5d3011e47837e45f8755f892, type: 3}
+  - {fileID: -4237345367929936772, guid: f0beabbb5d3011e47837e45f8755f892, type: 3}
+  - {fileID: -1730870507559054701, guid: f0beabbb5d3011e47837e45f8755f892, type: 3}
+  - {fileID: 3742457409785570221, guid: f0beabbb5d3011e47837e45f8755f892, type: 3}
+  - {fileID: 1403947071722829961, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: -236987403536444676, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: -3136973598031315234, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: -5245417669023076872, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: 4483954889997785448, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: 8791022885881592976, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: 5669745312100688429, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: 1928001915789267363, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: 9030986023467987452, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: 4107621610066977288, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: 3058589189428166275, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: -461987909208077453, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: -2761336175427127424, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: 859095478983679461, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: 6270179047987881118, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: -7901953958390869595, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: -7215568682596018086, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: 6611600725242711766, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: 6906415505753123327, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: -550882195869344341, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: 7331818446832721436, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: -784152208408916755, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: -7714203705803307313, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  - {fileID: -352474808689891211, guid: 62ab551f5aaee7c40b456fa5d485bcf5, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Tiles_Desert_Size_1000_Percent_21
+  - Tiles_Desert_Size_1000_Percent_20
+  - Tiles_Desert_Size_1000_Percent_23
+  - Tiles_Desert_Size_1000_Percent_22
+  - Tiles_Desert_Size_1000_Percent_24
+  - Tiles_Desert_Size_1000_Percent_9
+  - Tiles_Desert_Size_1000_Percent_8
+  - Tiles_Desert_Size_1000_Percent_1
+  - Tiles_Desert_Size_1000_Percent_0
+  - Tiles_Desert_Size_1000_Percent_3
+  - Tiles_Desert_Size_1000_Percent_2
+  - Tiles_Desert_Size_1000_Percent_5
+  - Tiles_Desert_Size_1000_Percent_4
+  - Tiles_Desert_Size_1000_Percent_7
+  - Tiles_Desert_Size_1000_Percent_6
+  - Tiles_Desert_Size_1000_Percent_18
+  - Tiles_Desert_Size_1000_Percent_19
+  - Tiles_Desert_Size_1000_Percent_10
+  - Tiles_Desert_Size_1000_Percent_11
+  - Tiles_Desert_Size_1000_Percent_12
+  - Tiles_Desert_Size_1000_Percent_13
+  - Tiles_Desert_Size_1000_Percent_14
+  - Tiles_Desert_Size_1000_Percent_15
+  - Tiles_Desert_Size_1000_Percent_16
+  - Tiles_Desert_Size_1000_Percent_17
+  - Tiles_RedCity_Size_1000_Percent_13
+  - Tiles_RedCity_Size_1000_Percent_12
+  - Tiles_RedCity_Size_1000_Percent_11
+  - Tiles_RedCity_Size_1000_Percent_10
+  - Tiles_RedCity_Size_1000_Percent_8
+  - Tiles_RedCity_Size_1000_Percent_9
+  - Tiles_RedCity_Size_1000_Percent_4
+  - Tiles_RedCity_Size_1000_Percent_5
+  - Tiles_RedCity_Size_1000_Percent_6
+  - Tiles_RedCity_Size_1000_Percent_7
+  - Tiles_RedCity_Size_1000_Percent_0
+  - Tiles_RedCity_Size_1000_Percent_1
+  - Tiles_RedCity_Size_1000_Percent_2
+  - Tiles_RedCity_Size_1000_Percent_3
+  - Tiles_Caves_Size_500_Percent_13
+  - Tiles_Caves_Size_500_Percent_12
+  - Tiles_Caves_Size_500_Percent_11
+  - Tiles_Caves_Size_500_Percent_10
+  - Tiles_Caves_Size_500_Percent_0
+  - Tiles_Caves_Size_500_Percent_1
+  - Tiles_Caves_Size_500_Percent_2
+  - Tiles_Caves_Size_500_Percent_3
+  - Tiles_Caves_Size_500_Percent_4
+  - Tiles_Caves_Size_500_Percent_5
+  - Tiles_Caves_Size_500_Percent_6
+  - Tiles_Caves_Size_500_Percent_7
+  - Tiles_Caves_Size_500_Percent_8
+  - Tiles_Caves_Size_500_Percent_9
+  - Tiles_Grassland_Size_1000_Percent_21
+  - Tiles_Grassland_Size_1000_Percent_20
+  - Tiles_Grassland_Size_1000_Percent_23
+  - Tiles_Grassland_Size_1000_Percent_22
+  - Tiles_Grassland_Size_1000_Percent_9
+  - Tiles_Grassland_Size_1000_Percent_8
+  - Tiles_Grassland_Size_1000_Percent_1
+  - Tiles_Grassland_Size_1000_Percent_0
+  - Tiles_Grassland_Size_1000_Percent_3
+  - Tiles_Grassland_Size_1000_Percent_2
+  - Tiles_Grassland_Size_1000_Percent_5
+  - Tiles_Grassland_Size_1000_Percent_4
+  - Tiles_Grassland_Size_1000_Percent_7
+  - Tiles_Grassland_Size_1000_Percent_6
+  - Tiles_Grassland_Size_1000_Percent_18
+  - Tiles_Grassland_Size_1000_Percent_19
+  - Tiles_Grassland_Size_1000_Percent_10
+  - Tiles_Grassland_Size_1000_Percent_11
+  - Tiles_Grassland_Size_1000_Percent_12
+  - Tiles_Grassland_Size_1000_Percent_13
+  - Tiles_Grassland_Size_1000_Percent_14
+  - Tiles_Grassland_Size_1000_Percent_15
+  - Tiles_Grassland_Size_1000_Percent_16
+  - Tiles_Grassland_Size_1000_Percent_17
+  m_RenderDataMap: {}
+  m_Tag: EnviromentAtlas
+  m_IsVariant: 0
