@@ -9,6 +9,7 @@ public class PlayerCollectables : MonoBehaviour
     public LayerMask _treasureLayer;
     public Text _coinsCount;
     public CoinCounter _coinsFromPrevLevel;
+    [SerializeField] private AudioClip _collectSound;
 
 
 
@@ -26,6 +27,7 @@ public class PlayerCollectables : MonoBehaviour
     {
         if (other.gameObject.layer == 10)
         {
+            SoundManager.instance.PlaySound(_collectSound);
             points += other.GetComponent<Treasure>().points_price;
             other.GetComponent<Treasure>().points_price = 0;
             Destroy(other.gameObject);

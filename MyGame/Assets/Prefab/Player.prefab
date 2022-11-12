@@ -315,7 +315,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 7157429296527975807}
+  _levelChanger: {fileID: 0}
   _animator: {fileID: 7157429296527975801}
+  _attackSound: {fileID: 8300000, guid: 323e15cfe809e114ab92c9f4b25e8bc2, type: 3}
+  _hurtSound: {fileID: 8300000, guid: 56703418e3aed4c47a5f6622816b8e41, type: 3}
+  _blockSound: {fileID: 8300000, guid: b7b5a6156961bac44a67504d42ce6fcf, type: 3}
   _attackPoint: {fileID: 7157429297394934424}
   _attackRadius: 0.55
   _enemies:
@@ -342,10 +346,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64cbdd7258d951f4ba1bc2432369bda2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points: 0
   _treasureLayer:
     serializedVersion: 2
     m_Bits: 1024
   _coinsCount: {fileID: 0}
+  _coinsFromPrevLevel: {fileID: 0}
+  _collectSound: {fileID: 8300000, guid: 7cc057bed53baf34799f52aab3c84800, type: 3}
 --- !u!1 &7157429297020468576
 GameObject:
   m_ObjectHideFlags: 0

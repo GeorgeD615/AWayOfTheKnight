@@ -217,6 +217,8 @@ MonoBehaviour:
     m_Bits: 8
   _animator: {fileID: 6235500837852808943}
   _playerTransform: {fileID: 0}
+  _leftBord: 0
+  _rightBord: 0
   _movementSmoothing: 0.05
   boxCollider: {fileID: 0}
   _lookAtRight: 0
@@ -255,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b24732dc97ac0469e19bcaa4cdf035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 0}
+  _controller: {fileID: 6235500837852808941}
   _enemyMovement: {fileID: 0}
   _playerCombat: {fileID: 0}
   _animator: {fileID: 0}
@@ -265,6 +267,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _damage: 20
+  _attackSound: {fileID: 8300000, guid: f11db4559b3ffff45b62e9327fc5535d, type: 3}
+  _hurtSound: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
   _maxHelth: 100
   _currentHelth: 0
   _hurtCount: 0

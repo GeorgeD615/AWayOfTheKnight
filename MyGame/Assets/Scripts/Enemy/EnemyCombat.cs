@@ -15,6 +15,10 @@ public class EnemyCombat : MonoBehaviour
     private float _nextAttackTime = 0f;
 
 
+    [SerializeField] private AudioClip _attackSound;
+    [SerializeField] private AudioClip _hurtSound;
+
+
     public int _maxHelth = 100;
     public int _currentHelth;
 
@@ -108,5 +112,14 @@ public class EnemyCombat : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(_attackPoint.position, _attackRadius);
+    }
+
+    public void PlayAttackSound()
+    {
+        SoundManager.instance.PlaySound(_attackSound);
+    }
+    public void PlayHurtSound()
+    {
+        SoundManager.instance.PlaySound(_hurtSound);
     }
 }

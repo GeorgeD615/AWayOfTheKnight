@@ -9,6 +9,10 @@ public class PlayerCombat : MonoBehaviour
     public Animator _animator;
     private Rigidbody2D _rigidbody;
 
+    [SerializeField] private AudioClip _attackSound;
+    [SerializeField] private AudioClip _hurtSound;
+    [SerializeField] private AudioClip _blockSound;
+
     public Transform _attackPoint;
     public float _attackRadius = 0.5f;
 
@@ -235,4 +239,17 @@ public class PlayerCombat : MonoBehaviour
     {
         Gizmos.DrawWireSphere(_attackPoint.position, _attackRadius);
     }
+
+    public void PlayAttackSound() {
+        SoundManager.instance.PlaySound(_attackSound);
+    }
+    public void PlayHurtSound()
+    {
+        SoundManager.instance.PlaySound(_hurtSound);
+    }
+    public void PlayBlockSound()
+    {
+        SoundManager.instance.PlaySound(_blockSound);
+    }
+
 }
