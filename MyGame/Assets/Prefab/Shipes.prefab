@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isActive: 1
+  _trapSound: {fileID: 8300000, guid: c5955b1ca51d47245ae5e5e10395d910, type: 3}

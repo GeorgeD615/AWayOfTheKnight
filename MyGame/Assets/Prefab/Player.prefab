@@ -328,8 +328,8 @@ MonoBehaviour:
   _attackRate: 2
   _healthBar: {fileID: 0}
   _stamina: {fileID: 0}
-  _maxHelth: 40
-  _maxStamina: 10000
+  _maxHelth: 200
+  _maxStamina: 1000
   _currentStamina: 0
   _isBlock: 0
   _blockAttackForHurt: 0

@@ -269,7 +269,7 @@ MonoBehaviour:
   _damage: 20
   _attackSound: {fileID: 8300000, guid: f11db4559b3ffff45b62e9327fc5535d, type: 3}
   _hurtSound: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
-  _maxHelth: 100
+  _maxHelth: 200
   _currentHelth: 0
   _hurtCount: 0
 --- !u!114 &3341382419985887615

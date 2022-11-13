@@ -7,6 +7,7 @@ public class GameOverSet : MonoBehaviour
 {
     private Animator anim;
     public int sceneToLoad;
+    public GameObject Player;
 
     private void Start()
     {
@@ -15,7 +16,10 @@ public class GameOverSet : MonoBehaviour
 
     public void FadeToLevel()
     {
-        Debug.Log("Set");
+        Player.GetComponent<PlayerMovement>().gameOver = true;
+        Player.GetComponent<PlayerCombat>().enabled = false;
+        //Player.GetComponent<CharacterController>().enabled = false;
+
         anim.SetTrigger("fade");
     }
     public void OnFadeComplete()

@@ -21,7 +21,6 @@ public class GameOverTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Trigger");
             GameOver.Invoke();
         }
     }

@@ -29,7 +29,7 @@ public class PlayerCombat : MonoBehaviour
 
     public int _maxHelth = 100;
     public static int _currentHelth;
-    public int _maxStamina = 10000;
+    public int _maxStamina = 1000;
     public int _currentStamina;
 
     public bool _isBlock = false;
@@ -46,6 +46,15 @@ public class PlayerCombat : MonoBehaviour
         _stamina.SetMaxStamina(_maxStamina);
         _rigidbody = GetComponent<Rigidbody2D>();
     }
+    private void FixedUpdate()
+    {
+        if ((_currentStamina < _maxStamina) && !_isBlock && Time.time > staminaRecoveryTime)
+        {
+            _currentStamina += 5;
+            staminaRecoveryBlock = false;
+            _stamina.SetStamina(_currentStamina);
+        }
+    }
     void Update()
     {
         if(!staminaRecoveryBlock && _currentStamina <= 0)
@@ -53,24 +62,18 @@ public class PlayerCombat : MonoBehaviour
             staminaRecoveryTime = Time.time + 3f;
             staminaRecoveryBlock = true;
         }
-        if ((_currentStamina < _maxStamina) && !_isBlock && Time.time > staminaRecoveryTime)
-        {
-            _currentStamina += 5;
-            staminaRecoveryBlock = false;
-            _stamina.SetStamina(_currentStamina);
-        }
         if (_controller._isGrounded && !_controller._isSliding && !_blockAttackForHurt)
         {
-            if (Input.GetMouseButtonDown(0) && _currentStamina > 3000)
+            if (Input.GetMouseButtonDown(0) && _currentStamina > 300)
             {
-                _currentStamina -= 3000;
+                _currentStamina -= 300;
                 AttackCombo();
             }
             if (Input.GetMouseButtonDown(1))
                 _unBlock = false;
             if (Input.GetMouseButton(1) && _currentStamina > 0 && !_unBlock)
             {
-                _currentStamina -= 5;
+                _currentStamina -= 1;
                 _stamina.SetStamina(_currentStamina);
                 Block();
             }
@@ -194,8 +197,8 @@ public class PlayerCombat : MonoBehaviour
         if (_isBlock && ((_controller._lookAtRight != enemyLookAtRight)) )
         {
             _animator.SetTrigger("BlockDamage");
-            if (_currentStamina > 2000)
-                _currentStamina -= 2000;
+            if (_currentStamina > 200)
+                _currentStamina -= 200;
             else
                 _currentStamina = 0;
             _stamina.SetStamina(_currentStamina);

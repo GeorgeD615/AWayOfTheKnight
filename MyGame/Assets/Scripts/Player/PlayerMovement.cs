@@ -14,17 +14,26 @@ public class PlayerMovement : MonoBehaviour
     float _horizontalMove = 0f;
     bool _isJumpButtonPressed = false;
 
+    public bool gameOver = false;
     private void Update()
     {
-        _horizontalMove = Input.GetAxisRaw("Horizontal") * _runSpeed;
-        _animator.SetFloat("Speed", Math.Abs(_horizontalMove));
-        if (!_controller._blockMoveAttack1 && !_controller._blockMoveAttack2 && !_controller._blockMoveAttack3 && !_controller._isBlocking)
+        if (!gameOver)
         {
-            if (Input.GetButtonDown("Jump"))
+            _horizontalMove = Input.GetAxisRaw("Horizontal") * _runSpeed;
+            _animator.SetFloat("Speed", Math.Abs(_horizontalMove));
+            if (!_controller._blockMoveAttack1 && !_controller._blockMoveAttack2 && !_controller._blockMoveAttack3 && !_controller._isBlocking)
             {
-                _isJumpButtonPressed = true;
-                _animator.SetBool("Jumping", true);
+                if (Input.GetButtonDown("Jump"))
+                {
+                    _isJumpButtonPressed = true;
+                    _animator.SetBool("Jumping", true);
+                }
             }
+        }
+        else
+        {
+            _horizontalMove = 0;
+            _animator.SetFloat("Speed", Math.Abs(_horizontalMove));
         }
     }
     private void FixedUpdate()

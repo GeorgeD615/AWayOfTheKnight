@@ -132,7 +132,7 @@ public class CharacterController : MonoBehaviour
 		{
 			_rigidbody.velocity = new Vector2(0f, _slideSpeed);
 		}
-		else if (_isSliding && jump)
+		else if (_isSliding && jump )
 		{
 			_blockMoveSlide = true;
 			IsFallingEvent.Invoke();
