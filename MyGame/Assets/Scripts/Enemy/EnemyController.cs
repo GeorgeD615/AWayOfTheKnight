@@ -10,8 +10,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private Transform _playerTransform;
 
-    [SerializeField] private float _leftBord;
-    [SerializeField] private float _rightBord;
 
     [Range(0, 0.3f)] [SerializeField] private float _movementSmoothing = 0.05f;
 
@@ -51,11 +49,11 @@ public class EnemyController : MonoBehaviour
             case State.COMBAT:
                 if ((_playerTransform.position.x <= transform.position.x && _lookAtRight) || (_playerTransform.position.x > transform.position.x && !_lookAtRight))
                     Flip();
-                if (!PlayerInSight() || !PlayerInRadius())
+                if (!PlayerInSight())
                     _currentState = State.IDLECOMBAT;
                 break;
             case State.IDLECOMBAT:
-                if (PlayerInSight() && PlayerInRadius())
+                if (PlayerInSight())
                     _currentState = State.COMBAT;
                 break;
             case State.DEATH:
@@ -75,13 +73,13 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
-                _rigidbody.velocity = new Vector2(0f, 0f);
+                _rigidbody.velocity = new Vector2(0f, -5f);
             }
             blockMoveForAttack();
         }
         else
         {
-            _rigidbody.velocity = new Vector2(0f, 0f);
+            _rigidbody.velocity = new Vector2(0f, -5f);
         }
         ChangeDirection(move);
     }
@@ -136,11 +134,6 @@ public class EnemyController : MonoBehaviour
                     new Vector3(boxCollider.bounds.size.x * _rangeX, boxCollider.bounds.size.y * _rangeY, boxCollider.bounds.size.z),
                     0, Vector2.left, 0, _playerLayer);
         return hit.collider != null;
-    }
-
-    private bool PlayerInRadius()
-    {
-        return ((_playerTransform.transform.position.x > _leftBord) && (_playerTransform.transform.position.x < _rightBord));
     }
     private void OnDrawGizmosSelected()
     {
