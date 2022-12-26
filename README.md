@@ -1,7 +1,7 @@
 # *A way of the knight*
 ### Прототип компьютерной игры в жанре 2D Платформер
 ___
-
+Download: https://georgedavlyatshin.itch.io/a-way-of-the-knight
 1.  Общие положения
     *  Жанр и целевые платформы
         +  2D Платформер
@@ -41,4 +41,10 @@ ___
     *  Референсы
         +  Hollow Knight
         +  Shovel Knight
-![1]()
+![1](https://github.com/GeorgeD615/GameProject/blob/main/Screenshots/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20(25).png?raw=true)
+![2](https://github.com/GeorgeD615/GameProject/blob/main/Screenshots/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20(26).png?raw=true)
+![3](https://github.com/GeorgeD615/GameProject/blob/main/Screenshots/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20(27).png?raw=true)
+![4](https://github.com/GeorgeD615/GameProject/blob/main/Screenshots/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20(29).png?raw=true)
+![6](https://github.com/GeorgeD615/GameProject/blob/main/Screenshots/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20(34).png?raw=true)
+![7](https://github.com/GeorgeD615/GameProject/blob/main/Screenshots/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20(35).png?raw=true)
+![5](https://github.com/GeorgeD615/GameProject/blob/main/Screenshots/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20(33).png?raw=true)
