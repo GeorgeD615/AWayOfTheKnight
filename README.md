@@ -1,11 +1,5 @@
 # *A way of the knight*
 ### Прототип компьютерной игры в жанре 2D Платформер
-**Технология**: Игровой движок Unity
-
-**Язык программирования**: C#
-
-**Платформа**: Windows
-
 ___
 
 1.  Общие положения
@@ -14,15 +8,10 @@ ___
         +  Целевая платформа – Windows
     *  Игровые механики и фичи
         - [X] Передвижение (бег, прыжок, скольжение по стенам, прыжок от стены):running:
-        ![movement_gif](https://github.com/GeorgeD615/GameProject/blob/main/GameplayRecording/PlayerMovement.gif?raw=true)
         - [X]  Атака в ближнем бою :facepunch:
-        ![combat_gif](https://github.com/GeorgeD615/GameProject/blob/main/GameplayRecording/PlayerCombat.gif?raw=true)
         - [X]  Блокирование :raised_hand:
-        ![combat_gif](https://github.com/GeorgeD615/GameProject/blob/main/GameplayRecording/PlayerBlock.gif?raw=true)
         - [X]  Сбор сокровищ (монеты, драгоценные камни и т. п.) :gem:
-        ![collectables_gif](https://github.com/GeorgeD615/GameProject/blob/main/GameplayRecording/PlayerCollectables.gif?raw=true)
         - [X]  Ловушки в окружении:bomb:
-        ![traps_gif](https://github.com/GeorgeD615/GameProject/blob/main/GameplayRecording/Trap.gif?raw=true)
 2.  Игровые сцены (игрок переходит последовательно из одной в другую)	
     - [X]  Exposition_scene :beginner:
         +  Назначение сцены: указать конечную цель (спасти принцессу, найти сокровище, победить дракона и т. п.), обучить механикам перемещения
@@ -51,9 +40,5 @@ ___
     *  Предполагается использование доступных ассетов в unity asset store
     *  Референсы
         +  Hollow Knight
-        
-        ![HK](https://cdn.cloudflare.steamstatic.com/steam/apps/367520/ss_47f3523dbea462aff2ca4bc9f605faaf80a792b2.1920x1080.jpg?t=1625363925)
-        
         +  Shovel Knight
-        
-        ![SK](https://images.gog-statics.com/5d000816fa3165a98ad1fac7414618ba70bb934f37b8b88fc79f19e83a0eabff_product_card_v2_mobile_slider_639.jpg)
+![1]()
